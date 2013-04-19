@@ -47,9 +47,17 @@
     <Compile Include="common\factory\creator\ICanCreateT.cs" />
     <Compile Include="common\factory\Factory.cs" />
     <Compile Include="common\factory\IFactory.cs" />
+    <Compile Include="common\provider\DataSourceProvider.cs" />
+    <Compile Include="common\provider\DynamicDataSourceProvider.cs" />
+    <Compile Include="common\provider\IDataSourceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AcronymsHighlightsPlugin\AcronymsHighlightsPlugin.csproj">
+      <Project>{80CC5DA1-B029-4D00-8D34-8951A3EF8602}</Project>
+      <Name>AcronymsHighlightsPlugin</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
