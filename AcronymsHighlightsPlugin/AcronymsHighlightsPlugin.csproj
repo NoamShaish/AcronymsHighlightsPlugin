@@ -40,10 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Dao\Base\Acronym.cs" />
     <Compile Include="Common\Dao\Interfaces\IAcronym.cs" />
     <Compile Include="Common\Dao\Interfaces\IDataSource.cs" />
     <Compile Include="Common\Dao\Interfaces\IDocumentDetails.cs" />
     <Compile Include="Common\Dao\Interfaces\IDocumentProperty.cs" />
+    <Compile Include="Common\plugin\AcronymsHighlightPlugin.cs" />
+    <Compile Include="Common\plugin\IAcronymsHighlightPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

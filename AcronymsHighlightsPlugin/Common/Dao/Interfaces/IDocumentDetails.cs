@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.ObjectModel;
 
 namespace AcronymsHighlightsPlugin.Common.Dao.Interfaces
 {
@@ -10,6 +9,6 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Interfaces
     {
         IDocumentProperty get(String propertyName);
         IDocumentProperty set(String propertyName, IDocumentProperty property);
-        Collection<IDocumentProperty> getAll();
+        ICollection<IDocumentProperty> getAll();
     }
 }

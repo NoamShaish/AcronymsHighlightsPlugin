@@ -28,7 +28,7 @@ namespace DynamicDataSourceProvider.common.provider
             Assembly[] assemblies = getAssemblies(pathToDataSourceLib);
             AssemblyCreatorGenerator[] generators = getGenerators(assemblies);
             AssemblyBasedFactoryProxy factory = AssemblyBasedFactoryProxy.newInstance(Factory.newInstance(), generators);
-            return new DynamicDataSourceProvider(DataSourceProvider.newInstance(factory, documentDetails);
+            return new DynamicDataSourceProvider(DataSourceProvider.newInstance(factory, documentDetails));
         }
 
         private static AssemblyCreatorGenerator[] getGenerators(Assembly[] assemblies)

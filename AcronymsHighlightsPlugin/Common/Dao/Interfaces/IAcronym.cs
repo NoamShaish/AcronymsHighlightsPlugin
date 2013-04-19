@@ -8,8 +8,8 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Interfaces
 {
     public interface IAcronym
     {
-        String Text { get; set; }
-        ICollection<String> Transulation { get; set; }
+        String Text { get; }
+        ICollection<String> Transulations { get; }
         Boolean isTrunslated();
         void clearTransulations();
 
