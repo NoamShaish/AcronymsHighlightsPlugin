@@ -8,7 +8,7 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Interfaces
     public interface IDocumentDetails
     {
         IDocumentProperty get(String propertyName);
-        IDocumentProperty set(String propertyName, IDocumentProperty property);
+        bool set(IDocumentProperty property);
         ICollection<IDocumentProperty> getAll();
     }
 }
