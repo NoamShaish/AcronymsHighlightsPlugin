@@ -14,6 +14,6 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Interfaces
         void clearTransulations();
 
 
-
+        /* This is a test row for the GIT HUB from Alex */
     }
 }
