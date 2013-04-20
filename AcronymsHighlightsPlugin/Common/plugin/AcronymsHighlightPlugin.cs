@@ -2,47 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 
 namespace AcronymsHighlightsPlugin.Common.plugin
 {
     public class AcronymsHighlightPlugin : IAcronymsHighlightPlugin
     {
         private AcronymsHighlightPlugin() { }
+
         public static AcronymsHighlightPlugin newInstance()
         {
             return new AcronymsHighlightPlugin();
         }
 
-        public string[] translate(string acronym)
-        {
-            throw new NotImplementedException();
-        }
+        private ICollection<IDataSource> registeredDataSources;
 
-        public void addDataSource(Dao.Interfaces.IDataSource dataSource)
+        public IAcronym translate(IAcronym acronym)
         {
-            throw new NotImplementedException();
-        }
+            foreach (IDataSource dataSource in this.registeredDataSources)
+            {
+                acronym = dataSource.transaulate(acronym);
+            }
 
-        public ICollection<Dao.Interfaces.IDataSource> getAviableDataSources()
-        {
-            throw new NotImplementedException();
+            return acronym;
         }
 
         public void registerDataSources(ICollection<Dao.Interfaces.IDataSource> dataSources)
         {
-            throw new NotImplementedException();
-        }
-
-        public Dao.Interfaces.IDocumentDetails documentDetais
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            this.registeredDataSources = dataSources;
         }
     }
 }

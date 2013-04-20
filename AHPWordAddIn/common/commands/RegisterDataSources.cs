@@ -5,7 +5,11 @@ using System.Text;
 
 namespace AHPWordAddIn.common.commands
 {
-    class RegisterDataSources
+    internal class RegisterDataSources : ICommand
     {
+        public void execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

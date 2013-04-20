@@ -8,10 +8,7 @@ namespace AcronymsHighlightsPlugin.Common.plugin
 {
     public interface IAcronymsHighlightPlugin
     {
-        string[] translate(string acronym);
-        void addDataSource(IDataSource dataSource);
-        ICollection<IDataSource> getAviableDataSources();
+        IAcronym translate(IAcronym acronym);
         void registerDataSources(ICollection<IDataSource> dataSources);
-        IDocumentDetails documentDetais { get; set; }
     }
 }

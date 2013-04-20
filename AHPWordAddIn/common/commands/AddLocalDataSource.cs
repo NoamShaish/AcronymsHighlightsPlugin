@@ -11,12 +11,15 @@ namespace AHPWordAddIn.common.commands
 {
     internal class AddLocalDataSource : ICommand
     {
+        #region ICommand
         public void execute()
         {
             Word.Selection selection = ThisAddIn.application.Selection;
             IDataSource localDataSource = convertToDataSource(selection);
-            AddInManager.instance.setLocalDataSource(localDataSource);
+            AcronymsHighlightFacade.instance.localDataSources = localDataSource;
+            AddInManager.instance.notifyLocalDataSorceSetup(localDataSource);
         }
+        #endregion
 
         private IDataSource convertToDataSource(Word.Selection selection)
         {

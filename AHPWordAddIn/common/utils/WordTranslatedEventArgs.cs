@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 
 namespace AHPWordAddIn.common.utils
 {
     internal class WordTranslatedEventArgs : EventArgs
     {
-        public string word { get; set; }
-        public string[] translations { get; set; }
+        public IAcronym acronym { get; set; }
     }
 }

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AHPWordAddIn.common.commands
 {
+    /// <summary>
+    /// Command pattern.
+    /// </summary>
     internal interface ICommand
     {
         void execute();

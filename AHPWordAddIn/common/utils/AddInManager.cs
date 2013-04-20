@@ -9,21 +9,27 @@ namespace AHPWordAddIn.common.utils
 {
     internal class AddInManager
     {
+        internal static readonly string DataSourceLibPathPropertyName = "dataSourceLibPath";
+
         private AddInManager() { }
-        internal static AddInManager instance { get; }
+        internal static AddInManager instance { get; private set; }
 
         internal event EventHandler<WordTranslatedEventArgs> Translated;
         internal event EventHandler<LocalDataSourceAddedEventArgs> LocalDataSourceAdded;
 
-        internal void setSelectionTranslation(string word, string[] translations)
+        internal void notifyTranslation(IAcronym acronym)
         {
-            this.Translated(this, new WordTranslatedEventArgs() { word = word, translations = translations });
+            this.Translated(this, new WordTranslatedEventArgs() { acronym = acronym });
         }
 
-        internal void setLocalDataSource(IDataSource localDataSource)
+        internal void notifyLocalDataSorceSetup(IDataSource localDataSource)
         {
-            AcronymsHighlightBLO.instance.addDataSource(localDataSource);
             this.LocalDataSourceAdded(this, new LocalDataSourceAddedEventArgs() { dataSource = localDataSource });
+        }
+
+        internal static IDocumentDetails getDocumentDetails()
+        {
+            throw new NotImplementedException();
         }
     }
 }

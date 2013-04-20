@@ -134,6 +134,15 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>AHPWordAddIn_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C23E522F27E49BF4EFD615F64D0C007476CAF515</ManifestCertificateThumbprint>
+  </PropertyGroup>
   <!--
     This section specifies references for the project.
   -->
@@ -187,8 +196,9 @@
   <ItemGroup>
     <Compile Include="common\commands\AddLocalDataSource.cs" />
     <Compile Include="common\commands\ICommand.cs" />
+    <Compile Include="common\commands\RegisterDataSources.cs" />
     <Compile Include="common\commands\Translate.cs" />
-    <Compile Include="common\plugin\AcronymsHighlightBLO.cs" />
+    <Compile Include="common\plugin\AcronymsHighlightFacade.cs" />
     <Compile Include="common\utils\AddInManager.cs" />
     <Compile Include="common\utils\LocalDataSourceAddedEventArgs.cs" />
     <Compile Include="common\utils\WordTranslatedEventArgs.cs" />
@@ -204,6 +214,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="AHPWordAddIn_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -227,6 +238,10 @@
     <ProjectReference Include="..\AcronymsHighlightsPlugin\AcronymsHighlightsPlugin.csproj">
       <Project>{80CC5DA1-B029-4D00-8D34-8951A3EF8602}</Project>
       <Name>AcronymsHighlightsPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DynamicDataSourceProvider\DynamicDataSourceProvider.csproj">
+      <Project>{B11C0C2A-60D7-4CE9-BB98-4A1E3A7C99F2}</Project>
+      <Name>DynamicDataSourceProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
