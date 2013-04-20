@@ -51,7 +51,7 @@ namespace DynamicDataSourceProvider.common.factory
                     obj = this.create(type);
                     result = true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     obj = GetDefault(type);
                     result = false;

@@ -10,15 +10,26 @@ using System.IO;
 
 namespace DynamicDataSourceProvider.common.provider
 {
+    /// <summary>
+    /// DynamicDataSourceProvider provide data sources from external dll's.
+    /// </summary>
     public class DynamicDataSourceProvider : IDataSourceProvider
     {
+        #region Factory method pattern
+        /// <summary>
+        /// Prevent from uncontroled creation.
+        /// </summary>
         private DynamicDataSourceProvider(IDataSourceProvider provider) 
         {
             this.provider = provider;
         }
-
-        private IDataSourceProvider provider { get; set; }
         
+        /// <summary>
+        /// Creates new instance of DynamicDataSourceProvider.
+        /// </summary>
+        /// <param name="pathToDataSourceLib">Path to librery where data sources will be loaded from.</param>
+        /// <param name="documentDetails">Current document details.</param>
+        /// <returns></returns>
         public static DynamicDataSourceProvider newInstance(string pathToDataSourceLib, IDocumentDetails documentDetails)
         {
             if (String.IsNullOrEmpty(pathToDataSourceLib.Trim()))
@@ -30,7 +41,18 @@ namespace DynamicDataSourceProvider.common.provider
             AssemblyBasedFactoryProxy factory = AssemblyBasedFactoryProxy.newInstance(Factory.newInstance(), generators);
             return new DynamicDataSourceProvider(DataSourceProvider.newInstance(factory, documentDetails));
         }
+        #endregion
 
+        /// <summary>
+        /// Wraped DataSourceProvider
+        /// </summary>
+        private IDataSourceProvider provider { get; set; }
+
+        /// <summary>
+        /// Retrive AssemblyCreatorGenerators for assemblies.
+        /// </summary>
+        /// <param name="assemblies">Array of assemblies to create generators for.</param>
+        /// <returns>Creator generators for given assemblies.</returns>
         private static AssemblyCreatorGenerator[] getGenerators(Assembly[] assemblies)
         {
             AssemblyCreatorGenerator[] generators = new AssemblyCreatorGenerator[assemblies.Length];
@@ -43,6 +65,11 @@ namespace DynamicDataSourceProvider.common.provider
             return generators;
         }
 
+        /// <summary>
+        /// Retirve all assemblies in given path.
+        /// </summary>
+        /// <param name="pathToDataSourceLib">Path of librery where assemblies to be searched.</param>
+        /// <returns>Assemblies from path given.</returns>
         private static Assembly[] getAssemblies(string pathToDataSourceLib)
         {
             if (!Directory.Exists(pathToDataSourceLib))
@@ -60,6 +87,7 @@ namespace DynamicDataSourceProvider.common.provider
             return assemblies;
         }
 
+        #region IDataSourceProvider
         public ICollection<Type> providing()
         {
             return this.provider.providing();
@@ -74,5 +102,6 @@ namespace DynamicDataSourceProvider.common.provider
         {
             return this.provider.get(dataSourceType);
         }
+        #endregion
     }
 }

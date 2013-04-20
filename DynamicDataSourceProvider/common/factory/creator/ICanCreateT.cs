@@ -15,6 +15,6 @@ namespace DynamicDataSourceProvider.common.factory.creator
         /// Create an instance of T.
         /// </summary>
         /// <returns>New T instance.</returns>
-        T create();
+        new T create();
     }
 }
