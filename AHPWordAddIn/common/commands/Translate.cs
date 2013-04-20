@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Word = Microsoft.Office.Interop.Word;
 using AHPWordAddIn.common.plugin;
+using AHPWordAddIn.common.utils;
 
 namespace AHPWordAddIn.common.commands
 {
@@ -14,7 +15,8 @@ namespace AHPWordAddIn.common.commands
             Word.Selection selection = ThisAddIn.application.Selection;
             if (selection != null && !String.IsNullOrEmpty(selection.Text))
             {
-                AcronymsHighlightBLO.instance.translate(selection.Text);
+                string[] translations = AcronymsHighlightBLO.instance.translate(selection.Text);
+                AddInManager.instance.setSelectionTranslation(selection.Text, translations);
             }
         }
     }

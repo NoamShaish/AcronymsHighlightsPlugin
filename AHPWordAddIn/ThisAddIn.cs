@@ -6,14 +6,13 @@ using System.Xml.Linq;
 using Word = Microsoft.Office.Interop.Word;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Word;
+using AHPWordAddIn.common.utils;
 
 namespace AHPWordAddIn
 {
     public partial class ThisAddIn
     {
         internal static Word.Application application { get; private set; }
-
-
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
@@ -22,7 +21,7 @@ namespace AHPWordAddIn
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
-        }
+        }        
 
         #region VSTO generated code
 
