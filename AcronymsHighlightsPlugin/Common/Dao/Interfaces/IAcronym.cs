@@ -12,8 +12,5 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Interfaces
         ICollection<String> Transulations { get; }
         Boolean isTrunslated();
         void clearTransulations();
-
-
-        /* This is a test row for the GIT HUB from Alex */
     }
 }
