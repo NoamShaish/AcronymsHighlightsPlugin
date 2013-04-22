@@ -10,7 +10,7 @@ using AHPWordAddIn.common.utils;
 namespace AHPWordAddIn.common.plugin
 {
     /// <summary>
-    /// singelton facade to all plugin capabilties.
+    /// Singelton facade to all plugin capabilties.
     /// </summary>
     internal class AcronymsHighlightFacade : IAcronymsHighlightPlugin, DDSP.IDataSourceProvider
     {
@@ -19,15 +19,24 @@ namespace AHPWordAddIn.common.plugin
         public IDataSource localDataSources { get; set; }
 
         #region Singleton
+        /// <summary>
+        /// Constructor initializing add in AHP and DDSP.
+        /// </summary>
         private AcronymsHighlightFacade() 
         {
             this.plugin = AcronymsHighlightPlugin.newInstance();
             IDocumentDetails details = AddInManager.getDocumentDetails();
-            this.provider = DDSP.DynamicDataSourceProvider.newInstance(details.get(AddInManager.DataSourceLibPathPropertyName).ToString(), details);
+            this.provider = DDSP.DynamicDataSourceProvider.newInstance(details.get(WordDocumentProperties.DataSourceLibPathPropertyName).ToString(), details);
         }
 
+        /// <summary>
+        /// The singleton instance.
+        /// </summary>
         private static AcronymsHighlightFacade internalInstance = new AcronymsHighlightFacade();
 
+        /// <summary>
+        /// Entry point.
+        /// </summary>
         public static AcronymsHighlightFacade instance
         {
             get { return AcronymsHighlightFacade.internalInstance; }

@@ -7,12 +7,16 @@ using AHPWordAddIn.common.plugin;
 
 namespace AHPWordAddIn.common.utils
 {
+    /// <summary>
+    /// Add in controller.
+    /// This singelton provide events to business logic layer logical events.
+    /// Any component want to reflect buisiness logic layer state should register to fitting event.
+    /// </summary>
     internal class AddInManager
     {
-        internal static readonly string DataSourceLibPathPropertyName = "dataSourceLibPath";
-
         private AddInManager() { }
-        internal static AddInManager instance { get; private set; }
+        private static AddInManager internalInstance = new AddInManager();
+        internal static AddInManager instance { get { return AddInManager.internalInstance; } }
 
         internal event EventHandler<WordTranslatedEventArgs> Translated;
         internal event EventHandler<LocalDataSourceAddedEventArgs> LocalDataSourceAdded;

@@ -11,7 +11,7 @@ using AcronymsHighlightsPlugin.Common.Dao.Base;
 namespace AHPWordAddIn.common.commands
 {
     /// <summary>
-    /// Translate command, to be called when acronym translation is needed.
+    /// Command to be called when acronym translation is needed.
     /// </summary>
     internal class Translate : ICommand
     {
