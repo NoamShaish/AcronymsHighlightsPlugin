@@ -9,6 +9,9 @@ using AHPWordAddIn.common.utils;
 
 namespace AHPWordAddIn.common.commands
 {
+    /// <summary>
+    /// Command to be called when local data source is setup.
+    /// </summary>
     internal class AddLocalDataSource : ICommand
     {
         #region ICommand

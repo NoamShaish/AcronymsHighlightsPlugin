@@ -6,17 +6,33 @@ using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 
 namespace AcronymsHighlightsPlugin.Common.plugin
 {
+    /// <summary>
+    /// Basic acronym highligh plugin implementation.
+    /// </summary>
     public class AcronymsHighlightPlugin : IAcronymsHighlightPlugin
     {
+        /// <summary>
+        /// Corrent registered data sources.
+        /// </summary>
+        private ICollection<IDataSource> registeredDataSources;
+
+        #region Factory method pattern
+        /// <summary>
+        /// Prevent from uncontroled creation.
+        /// </summary>
         private AcronymsHighlightPlugin() { }
 
+        /// <summary>
+        /// Factory method.
+        /// </summary>
+        /// <returns>New instance of AcronymsHighlightPlugin.</returns>
         public static AcronymsHighlightPlugin newInstance()
         {
             return new AcronymsHighlightPlugin();
         }
+        #endregion
 
-        private ICollection<IDataSource> registeredDataSources;
-
+        #region IAcronymsHighlightPlugin
         public IAcronym translate(IAcronym acronym)
         {
             foreach (IDataSource dataSource in this.registeredDataSources)
@@ -31,5 +47,6 @@ namespace AcronymsHighlightsPlugin.Common.plugin
         {
             this.registeredDataSources = dataSources;
         }
+        #endregion
     }
 }
