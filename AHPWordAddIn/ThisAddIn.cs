@@ -17,7 +17,6 @@ namespace AHPWordAddIn
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             ThisAddIn.application = this.Application;
-            /*KISHKUSH*/
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
