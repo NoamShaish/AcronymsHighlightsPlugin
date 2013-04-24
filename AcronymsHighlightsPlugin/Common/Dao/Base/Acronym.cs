@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 
 namespace AcronymsHighlightsPlugin.Common.Dao.Base
@@ -14,7 +12,7 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Base
         /// <summary>
         /// Acronym translations.
         /// </summary>
-        private readonly List<string> transalations = new List<string>();
+        private List<string> translations = new List<string>();
 
         #region Factory method pattern
         /// <summary>
@@ -45,23 +43,23 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Base
 
         #region IAcronym
         public string Text { get; private set; }
-        
-        public ICollection<string> Transulations
+
+        public ICollection<string> Translations
         {
             get
             {
-                return this.transalations;
+                return this.translations;
             }
         }
 
-        public bool isTrunslated()
+        public bool isTranslated()
         {
-            return this.Transulations.Count > 0;
+            return this.Translations.Count > 0;
         }
 
-        public void clearTransulations()
+        public void clearTranslations()
         {
-            this.transalations.Clear();
+            this.translations.Clear();
         }
         #endregion
     }

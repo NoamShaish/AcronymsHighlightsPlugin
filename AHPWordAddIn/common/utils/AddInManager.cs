@@ -10,7 +10,7 @@ namespace AHPWordAddIn.common.utils
     /// <summary>
     /// Add in controller.
     /// This singelton provide events to business logic layer logical events.
-    /// Any component want to reflect buisiness logic layer state should register to fitting event.
+    /// Any component that want to reflect buisiness logic layer state should register to fitting event.
     /// </summary>
     internal class AddInManager
     {

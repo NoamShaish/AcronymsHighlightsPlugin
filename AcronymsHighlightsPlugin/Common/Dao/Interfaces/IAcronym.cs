@@ -19,19 +19,19 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Interfaces
         /// <summary>
         /// Acronym translations.
         /// </summary>
-        ICollection<String> Transulations { get; }
+        ICollection<String> Translations { get; }
 
         /// <summary>
         /// Information if acronym is translated.
         /// isTrunslated() = true => Transulations.length = 0.
         /// </summary>
         /// <returns>True if no translations exists for acronym.</returns>
-        Boolean isTrunslated();
+        Boolean isTranslated();
 
         /// <summary>
         /// Clear all existing translations for acronym.
         /// After call Transulations.length = 0.
         /// </summary>
-        void clearTransulations();
+        void clearTranslations();
     }
 }

@@ -26,7 +26,8 @@ namespace AHPWordAddIn.common.plugin
         {
             this.plugin = AcronymsHighlightPlugin.newInstance();
             IDocumentDetails details = AddInManager.getDocumentDetails();
-            this.provider = DDSP.DynamicDataSourceProvider.newInstance(details.get(WordDocumentProperties.DataSourceLibPathPropertyName).ToString(), details);
+            this.provider = DDSP.DynamicDataSourceProvider.newInstance(details.get(WordDocumentProperties.DataSourceLibPathPropertyName).ToString(), 
+                                                                        details);
         }
 
         /// <summary>
