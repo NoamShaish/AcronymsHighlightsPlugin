@@ -198,6 +198,8 @@
     <Compile Include="common\commands\ICommand.cs" />
     <Compile Include="common\commands\RegisterDataSources.cs" />
     <Compile Include="common\commands\Translate.cs" />
+    <Compile Include="common\GUIConnectors\IGUIConnector.cs" />
+    <Compile Include="common\GUIConnectors\RightClickMenuConnector.cs" />
     <Compile Include="common\plugin\AcronymsHighlightFacade.cs" />
     <Compile Include="common\plugin\WordDocumentProperties.cs" />
     <Compile Include="common\utils\AddInManager.cs" />

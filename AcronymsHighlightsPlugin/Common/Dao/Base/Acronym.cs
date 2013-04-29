@@ -12,7 +12,7 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Base
         /// <summary>
         /// Acronym translations.
         /// </summary>
-        private List<string> translations = new List<string>();
+        private readonly List<string> translations = new List<string>();
 
         #region Factory method pattern
         /// <summary>

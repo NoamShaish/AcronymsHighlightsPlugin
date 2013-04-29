@@ -8,12 +8,12 @@ namespace AHPWordAddIn.common.plugin
 {
     internal class WordDocumentProperties : IDocumentDetails
     {
-        #region Members
+        #region Properties Names
         internal static readonly string DataSourceLibPathPropertyName = "dataSourceLibPath";
         #endregion
 
         #region Methods
-        /********************************************************************/
+        
         /// <summary>
         /// 
         /// </summary>
@@ -23,7 +23,7 @@ namespace AHPWordAddIn.common.plugin
         {
             throw new NotImplementedException();
         }
-        /********************************************************************/
+        
         /// <summary>
         /// 
         /// </summary>
@@ -32,7 +32,7 @@ namespace AHPWordAddIn.common.plugin
         {
             throw new NotImplementedException();
         }
-        /********************************************************************/
+        
         /// <summary>
         /// 
         /// </summary>
@@ -42,7 +42,7 @@ namespace AHPWordAddIn.common.plugin
         {
             throw new NotImplementedException();
         }
-        /********************************************************************/
+        
         #endregion
     }
 }
