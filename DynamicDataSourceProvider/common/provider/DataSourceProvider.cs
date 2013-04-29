@@ -48,6 +48,7 @@ namespace DynamicDataSourceProvider.common.provider
 
             DataSourceProvider provider = new DataSourceProvider();
             provider.factory = factory;
+            provider.documentDetails = documentDetails;
             return provider;
         }
         #endregion
