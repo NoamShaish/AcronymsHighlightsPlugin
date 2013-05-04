@@ -40,7 +40,7 @@ namespace AHPWordAddIn.common.GUIConnectors
         {
             CommandBar commandBar = null;
             getCommandBarInstanceByName(ThisAddIn.application.CommandBars, "Text", out commandBar);
-            CleanCommandBarByList(ref commandBar);
+            CleanCommandBar(ref commandBar);
             updateCommandBarByAccronym(e.acronym, ref commandBar);
         }
 
@@ -48,7 +48,7 @@ namespace AHPWordAddIn.common.GUIConnectors
         /// Resets the command bar from previouse results
         /// </summary>
         /// <param name="commandBar">CommandBar instance</param>
-        private void CleanCommandBarByList(ref CommandBar commandBar)
+        private void CleanCommandBar(ref CommandBar commandBar)
         {
             commandBar.Reset();
         }
