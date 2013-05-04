@@ -26,7 +26,7 @@ namespace AHPWordAddIn.common.plugin
         {
             this.plugin = AcronymsHighlightPlugin.newInstance();
             IDocumentDetails details = AddInManager.getDocumentDetails();
-            this.provider = DDSP.DynamicDataSourceProvider.newInstance(details.get(WordDocumentProperties.DataSourceLibPathPropertyName).ToString(), details);
+            this.provider = DDSP.DynamicDataSourceProvider.newInstance(details.get(WordDocumentProperties.DataSourceLibPathPropertyName).value.ToString(), details);
         }
 
         /// <summary>
@@ -39,7 +39,13 @@ namespace AHPWordAddIn.common.plugin
         /// </summary>
         public static AcronymsHighlightFacade instance
         {
-            get { return AcronymsHighlightFacade.internalInstance; }
+            get {
+                if (AcronymsHighlightFacade.internalInstance == null)
+                {
+                    AcronymsHighlightFacade.internalInstance = new AcronymsHighlightFacade();
+                }
+                return AcronymsHighlightFacade.internalInstance; 
+            }
         }
         #endregion
 

@@ -9,7 +9,7 @@ namespace DynamicDataSourceProvider.common.factory.creator
     /// This class is factory class of ICreator classes.
     /// The idea is to create on the fly generic creators by giving a creaton delegate.
     /// </summary>
-    public abstract static class CreatorFactory
+    public static class CreatorFactory
     {
         /// <summary>
         /// This is an internal implementation of interface ICanCreateT that will be return by the factory.

@@ -35,7 +35,7 @@ namespace AHPWordAddIn
         /// <param name="application">Application object</param>
         private void initializeConnectors()
         {
-            new RightClickMenuConnector();
+            ThisAddIn.GUIConnectors.Add(new RightClickMenuConnector());
         }
         
         #region Events

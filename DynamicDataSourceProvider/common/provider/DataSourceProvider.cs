@@ -94,7 +94,7 @@ namespace DynamicDataSourceProvider.common.provider
             IDataSource newDataSource = (IDataSource)this.factory.create(type);
             if (this.documentDetails != null)
             {
-                newDataSource.documentDetails = this.documentDetails;
+                newDataSource.DocumentDetails = this.documentDetails;
             }
             return newDataSource;
         }

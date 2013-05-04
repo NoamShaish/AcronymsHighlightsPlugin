@@ -12,6 +12,7 @@ namespace AHPWordAddIn.common.plugin
         internal static readonly string DataSourceLibPathPropertyName = "dataSourceLibPath";
         #endregion
 
+        private Dictionary<string, IDocumentProperty> properties = new Dictionary<string, IDocumentProperty>();
         #region Methods
         
         /// <summary>
@@ -21,7 +22,7 @@ namespace AHPWordAddIn.common.plugin
         /// <returns></returns>
         public IDocumentProperty get(String propertyName)
         {
-            throw new NotImplementedException();
+            return this.properties[propertyName];
         }
         
         /// <summary>
@@ -30,7 +31,7 @@ namespace AHPWordAddIn.common.plugin
         /// <returns></returns>
         public ICollection<IDocumentProperty> getAll()
         {
-            throw new NotImplementedException();
+            return this.properties.Values;
         }
         
         /// <summary>
@@ -40,7 +41,16 @@ namespace AHPWordAddIn.common.plugin
         /// <returns></returns>
         public IDocumentProperty set(IDocumentProperty property)
         {
-            throw new NotImplementedException();
+            IDocumentProperty oldProperty = property;
+            if (this.properties.Keys.Contains<string>(property.name))
+            {
+                oldProperty = this.properties[property.name];
+                this.properties.Remove(property.name);
+            }
+
+            this.properties.Add(property.name, property);
+
+            return oldProperty;
         }
         
         #endregion

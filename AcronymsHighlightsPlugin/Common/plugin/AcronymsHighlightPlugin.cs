@@ -35,9 +35,12 @@ namespace AcronymsHighlightsPlugin.Common.plugin
         #region IAcronymsHighlightPlugin
         public IAcronym translate(IAcronym acronym)
         {
-            foreach (IDataSource dataSource in this.registeredDataSources)
+            if (this.registeredDataSources != null)
             {
-                acronym = dataSource.transaulate(acronym);
+                foreach (IDataSource dataSource in this.registeredDataSources)
+                {
+                    acronym = dataSource.transaulate(acronym);
+                }
             }
 
             return acronym;

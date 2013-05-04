@@ -26,7 +26,19 @@ namespace AHPWordAddIn.common.commands
 
         private IDataSource convertToDataSource(Word.Selection selection)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (selection != null && selection.Tables != null && selection.Tables[1] != null)
+                {
+                    return WordTableDataSource.newInstance(selection.Tables[1]);
+                }
+            }
+            catch (Exception e)
+            {
+                string a = e.Message;
+            }
+
+            throw new ArgumentException("No table selected");
         }
     }
 }

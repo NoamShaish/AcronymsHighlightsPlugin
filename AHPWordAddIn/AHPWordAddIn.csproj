@@ -194,6 +194,12 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="AcronymsHighlightRibbon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AcronymsHighlightRibbon.Designer.cs">
+      <DependentUpon>AcronymsHighlightRibbon.cs</DependentUpon>
+    </Compile>
     <Compile Include="common\commands\AddLocalDataSource.cs" />
     <Compile Include="common\commands\ICommand.cs" />
     <Compile Include="common\commands\RegisterDataSources.cs" />
@@ -202,12 +208,17 @@
     <Compile Include="common\GUIConnectors\RightClickMenuConnector.cs" />
     <Compile Include="common\plugin\AcronymsHighlightFacade.cs" />
     <Compile Include="common\plugin\WordDocumentProperties.cs" />
+    <Compile Include="common\plugin\WordDocumentProperty.cs" />
+    <Compile Include="common\plugin\WordTableDataSource.cs" />
     <Compile Include="common\utils\AddInManager.cs" />
     <Compile Include="common\utils\LocalDataSourceAddedEventArgs.cs" />
     <Compile Include="common\utils\WordTranslatedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="AcronymsHighlightRibbon.resx">
+      <DependentUpon>AcronymsHighlightRibbon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

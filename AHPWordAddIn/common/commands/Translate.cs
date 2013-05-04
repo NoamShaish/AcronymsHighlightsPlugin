@@ -19,10 +19,9 @@ namespace AHPWordAddIn.common.commands
         public void execute()
         {
             Word.Selection selection = ThisAddIn.application.Selection;
-            if (selection                               != null && 
-                String.IsNullOrEmpty(selection.Text)    == false)
+            if (selection != null && String.IsNullOrEmpty(selection.Text) == false)
             {
-                IAcronym acronym = AcronymsHighlightFacade.instance.translate(Acronym.newInstance(selection.Text));
+                IAcronym acronym = AcronymsHighlightFacade.instance.translate(Acronym.newInstance(selection.Text.Trim().TrimEnd(Environment.NewLine.ToCharArray())));
                 AddInManager.instance.notifyTranslation(acronym);
             }
         }

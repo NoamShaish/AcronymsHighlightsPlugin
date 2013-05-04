@@ -41,7 +41,7 @@ namespace AHPWordAddIn.common.GUIConnectors
             CommandBar commandBar = null;
             getCommandBarInstanceByName(ThisAddIn.application.CommandBars, "Text", out commandBar);
             CleanCommandBarByList(ref commandBar);
-            updateCommandBarByAccronym(e.acronym, ref  commandBar);
+            updateCommandBarByAccronym(e.acronym, ref commandBar);
         }
 
         /// <summary>

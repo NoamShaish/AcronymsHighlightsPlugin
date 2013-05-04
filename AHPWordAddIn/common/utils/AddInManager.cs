@@ -16,24 +16,44 @@ namespace AHPWordAddIn.common.utils
     {
         private AddInManager() { }
         private static AddInManager internalInstance = new AddInManager();
-        internal static AddInManager instance { get { return AddInManager.internalInstance; } }
+        internal static AddInManager instance
+        {
+            get
+            {
+                if (AddInManager.internalInstance == null)
+                {
+                    AddInManager.internalInstance = new AddInManager();
+                }
+                
+                return AddInManager.internalInstance;
+            }
+        }
 
         internal event EventHandler<WordTranslatedEventArgs> Translated;
         internal event EventHandler<LocalDataSourceAddedEventArgs> LocalDataSourceAdded;
 
         internal void notifyTranslation(IAcronym acronym)
         {
-            this.Translated(this, new WordTranslatedEventArgs() { acronym = acronym });
+            if (this.Translated != null)
+            {
+                this.Translated(this, new WordTranslatedEventArgs() { acronym = acronym });
+            }
         }
+        
 
         internal void notifyLocalDataSorceSetup(IDataSource localDataSource)
         {
-            this.LocalDataSourceAdded(this, new LocalDataSourceAddedEventArgs() { dataSource = localDataSource });
+            if (this.LocalDataSourceAdded != null)
+            {
+                this.LocalDataSourceAdded(this, new LocalDataSourceAddedEventArgs() { dataSource = localDataSource });
+            }
         }
 
         internal static IDocumentDetails getDocumentDetails()
         {
-            throw new NotImplementedException();
+            WordDocumentProperties documentProperties = new WordDocumentProperties();
+            documentProperties.set(new WordDocumentProperty() { name = WordDocumentProperties.DataSourceLibPathPropertyName, value = "D:\\Work Station\\lib" });
+            return documentProperties;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace AcronymsHighlightsPlugin.Common.Dao.Interfaces
         /// <summary>
         /// Ability to add information regarding spcific document.
         /// </summary>
-        IDocumentDetails documentDetails { set; }
+        IDocumentDetails DocumentDetails { set; }
 
         /// <summary>
         /// Translate an acronym.
