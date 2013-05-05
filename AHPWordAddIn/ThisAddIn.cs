@@ -11,6 +11,7 @@ using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 using Microsoft.Office.Core;
 using AcronymsHighlightsPlugin.Common.Dao.Base;
 using AHPWordAddIn.common.GUIConnectors;
+using System.Configuration;
 
 namespace AHPWordAddIn
 {
@@ -19,6 +20,9 @@ namespace AHPWordAddIn
         #region Members
         internal static Application application { get; private set; }
         internal static readonly ICollection<IGUIConnector> GUIConnectors = new LinkedList<IGUIConnector>();
+        
+        private         AHPWordAddIn.Properties.Settings settings = new Properties.Settings();
+
         #endregion
         
         /// <summary>
@@ -48,9 +52,35 @@ namespace AHPWordAddIn
         {
             initializeMembers();
             initializeConnectors();
+            setRibbonComponentsState();
         }
 
-        private void ThisAddIn_Shutdown(object sender, System.EventArgs e) { }
+        /// <summary>
+        /// Imports setings into add-in's ribbon
+        /// </summary>
+        private void setRibbonComponentsState()
+        {
+            Globals.Ribbons.AccronymHighlightsRibbon.setComponentsState(settings);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ThisAddIn_Shutdown(object sender, System.EventArgs e) 
+        {
+            getRibbonComponentsState();
+            settings.Save();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void getRibbonComponentsState()
+        {
+            Globals.Ribbons.AccronymHighlightsRibbon.getComponentsState(settings);
+        }
         #endregion
         
         #region VSTO generated code

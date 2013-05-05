@@ -29,6 +29,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DefineConstants>VSTO40</DefineConstants>
+    <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <PublishUrl>publish\</PublishUrl>
     <InstallUrl />
@@ -38,7 +39,6 @@
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
-    <IsWebBootstrapper>False</IsWebBootstrapper>
     <ProductName>AHPWordAddIn</ProductName>
     <PublisherName />
     <SupportUrl />
@@ -199,6 +199,11 @@
     </Compile>
     <Compile Include="AcronymsHighlightRibbon.Designer.cs">
       <DependentUpon>AcronymsHighlightRibbon.cs</DependentUpon>
+    <Compile Include="AccronymHighlightsRibbon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AccronymHighlightsRibbon.Designer.cs">
+      <DependentUpon>AccronymHighlightsRibbon.cs</DependentUpon>
     </Compile>
     <Compile Include="common\commands\AddLocalDataSource.cs" />
     <Compile Include="common\commands\ICommand.cs" />
@@ -206,10 +211,46 @@
     <Compile Include="common\commands\Translate.cs" />
     <Compile Include="common\GUIConnectors\IGUIConnector.cs" />
     <Compile Include="common\GUIConnectors\RightClickMenuConnector.cs" />
+    <Compile Include="common\GUIForms\AdvancedTranslationConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="common\GUIForms\AdvancedTranslationConfiguration.Designer.cs">
+      <DependentUpon>AdvancedTranslationConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\GUIForms\ExternalDataSourceConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="common\GUIForms\ExternalDataSourceConfiguration.Designer.cs">
+      <DependentUpon>ExternalDataSourceConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="common\plugin\AcronymsHighlightFacade.cs" />
     <Compile Include="common\plugin\WordDocumentProperties.cs" />
     <Compile Include="common\plugin\WordDocumentProperty.cs" />
     <Compile Include="common\plugin\WordTableDataSource.cs" />
+    <Compile Include="common\UserControls\AdvancedTranslationEvntCfg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="common\UserControls\AdvancedTranslationEvntCfg.Designer.cs">
+      <DependentUpon>AdvancedTranslationEvntCfg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\UserControls\ExternalDataSourceMgr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="common\UserControls\ExternalDataSourceMgr.Designer.cs">
+      <DependentUpon>ExternalDataSourceMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\UserControls\MouseHoverTimerConfiguration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="common\UserControls\MouseHoverTimerConfiguration.Designer.cs">
+      <DependentUpon>MouseHoverTimerConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\UserControls\MultipleMatchesConfiguration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="common\UserControls\MultipleMatchesConfiguration.Designer.cs">
+      <DependentUpon>MultipleMatchesConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="common\utils\AddInManager.cs" />
     <Compile Include="common\utils\LocalDataSourceAddedEventArgs.cs" />
     <Compile Include="common\utils\WordTranslatedEventArgs.cs" />
@@ -218,6 +259,26 @@
     </Compile>
     <EmbeddedResource Include="AcronymsHighlightRibbon.resx">
       <DependentUpon>AcronymsHighlightRibbon.cs</DependentUpon>
+    <EmbeddedResource Include="AccronymHighlightsRibbon.resx">
+      <DependentUpon>AccronymHighlightsRibbon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\GUIForms\AdvancedTranslationConfiguration.resx">
+      <DependentUpon>AdvancedTranslationConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\GUIForms\ExternalDataSourceConfiguration.resx">
+      <DependentUpon>ExternalDataSourceConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\UserControls\AdvancedTranslationEvntCfg.resx">
+      <DependentUpon>AdvancedTranslationEvntCfg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\UserControls\ExternalDataSourceMgr.resx">
+      <DependentUpon>ExternalDataSourceMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\UserControls\MouseHoverTimerConfiguration.resx">
+      <DependentUpon>MouseHoverTimerConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\UserControls\MultipleMatchesConfiguration.resx">
+      <DependentUpon>MultipleMatchesConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -229,6 +290,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="AHPWordAddIn_TemporaryKey.pfx" />
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -236,7 +298,9 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
