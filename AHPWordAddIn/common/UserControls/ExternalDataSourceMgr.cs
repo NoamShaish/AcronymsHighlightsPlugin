@@ -49,9 +49,9 @@ namespace AHPWordAddIn.common.UserControls
         }
 
         /// <summary>
-        /// 
+        /// Gets components state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void getComponentsState(Properties.Settings settings)
         {
             int index = 0;

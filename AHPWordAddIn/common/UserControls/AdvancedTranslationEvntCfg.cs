@@ -15,7 +15,7 @@ namespace AHPWordAddIn.common.UserControls
         private MultipleMatchesConfiguration multipleMatchesConfiguration = new MultipleMatchesConfiguration();
 
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
         public AdvancedTranslationEvntCfg()
         {
@@ -24,7 +24,7 @@ namespace AHPWordAddIn.common.UserControls
         }
 
         /// <summary>
-        /// 
+        /// Initializes the GUI components
         /// </summary>
         private void InitGUI()
         {
@@ -33,9 +33,9 @@ namespace AHPWordAddIn.common.UserControls
         }
 
         /// <summary>
-        /// 
+        /// Gets components state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void getComponentsState(Properties.Settings settings)
         {
             multipleMatchesConfiguration.getComponentsState(settings);
@@ -43,9 +43,9 @@ namespace AHPWordAddIn.common.UserControls
         }
 
         /// <summary>
-        /// 
+        /// Sets componetns state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void setComponentsState(Properties.Settings settings)
         {
             multipleMatchesConfiguration.setComponentsState(settings);

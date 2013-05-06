@@ -61,18 +61,18 @@ namespace AHPWordAddIn.common.GUIForms
         }
 
         /// <summary>
-        /// 
+        /// Sets components' state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void setComponentsState(Properties.Settings settings)
         {
             externalDataSourceMgr.setComponentsState(settings);
         }
 
         /// <summary>
-        /// 
+        /// Gets components' state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void getComponentsState(Properties.Settings settings)
         {
             externalDataSourceMgr.getComponentsState(settings);

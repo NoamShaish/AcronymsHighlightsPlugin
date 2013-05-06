@@ -194,11 +194,6 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="AcronymsHighlightRibbon.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="AcronymsHighlightRibbon.Designer.cs">
-      <DependentUpon>AcronymsHighlightRibbon.cs</DependentUpon>
     <Compile Include="AccronymHighlightsRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -257,8 +252,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="AcronymsHighlightRibbon.resx">
-      <DependentUpon>AcronymsHighlightRibbon.cs</DependentUpon>
     <EmbeddedResource Include="AccronymHighlightsRibbon.resx">
       <DependentUpon>AccronymHighlightsRibbon.cs</DependentUpon>
     </EmbeddedResource>

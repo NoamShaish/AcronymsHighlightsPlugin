@@ -13,7 +13,7 @@ namespace AHPWordAddIn.common.UserControls
     public partial class MultipleMatchesConfiguration : UserControl
     {
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
         public MultipleMatchesConfiguration()
         {
@@ -22,7 +22,7 @@ namespace AHPWordAddIn.common.UserControls
         }
 
         /// <summary>
-        /// 
+        /// Initilizes components
         /// </summary>
         private void InitComponents()
         {
@@ -30,18 +30,18 @@ namespace AHPWordAddIn.common.UserControls
         }
 
         /// <summary>
-        /// 
+        /// Gets components state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void getComponentsState(Properties.Settings settings)
         {
             settings.NumOfMultipleTranslations = Int32.Parse(cmBxNumResults.SelectedItem.ToString()[0].ToString());
         }
 
         /// <summary>
-        /// 
+        /// Sets components state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void setComponentsState(Properties.Settings settings)
         {
             string numOfTrans = settings.NumOfMultipleTranslations.ToString();

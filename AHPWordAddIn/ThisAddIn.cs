@@ -18,13 +18,16 @@ namespace AHPWordAddIn
     public partial class ThisAddIn
     {
         #region Members
-        internal static Application application { get; private set; }
-        internal static readonly ICollection<IGUIConnector> GUIConnectors = new LinkedList<IGUIConnector>();
         
-        private         AHPWordAddIn.Properties.Settings settings = new Properties.Settings();
+        internal static Application application { get; private set; }
+        
+        internal static readonly ICollection<IGUIConnector> GUIConnectors = new LinkedList<IGUIConnector>();
+ 
+        private AHPWordAddIn.Properties.Settings settings = new Properties.Settings();
 
         #endregion
-        
+
+        #region Methods
         /// <summary>
         /// Initializes the basic members of the object
         /// </summary>
@@ -41,7 +44,24 @@ namespace AHPWordAddIn
         {
             ThisAddIn.GUIConnectors.Add(new RightClickMenuConnector());
         }
-        
+
+        /// <summary>
+        /// Imports setings into add-in's ribbon
+        /// </summary>
+        private void setRibbonComponentsState()
+        {
+            Globals.Ribbons.AccronymHighlightsRibbon.setComponentsState(settings);
+        }
+
+        /// <summary>
+        /// Updates the "Settings" object with current "Ribbon's" components state
+        /// </summary>
+        private void getRibbonComponentsState()
+        {
+            Globals.Ribbons.AccronymHighlightsRibbon.getComponentsState(settings);
+        }
+        #endregion
+
         #region Events
         /// <summary>
         /// This event occurs on the startup process of the application
@@ -56,15 +76,7 @@ namespace AHPWordAddIn
         }
 
         /// <summary>
-        /// Imports setings into add-in's ribbon
-        /// </summary>
-        private void setRibbonComponentsState()
-        {
-            Globals.Ribbons.AccronymHighlightsRibbon.setComponentsState(settings);
-        }
-
-        /// <summary>
-        /// 
+        /// This event occures before applicaion is shutting down
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -72,14 +84,6 @@ namespace AHPWordAddIn
         {
             getRibbonComponentsState();
             settings.Save();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void getRibbonComponentsState()
-        {
-            Globals.Ribbons.AccronymHighlightsRibbon.getComponentsState(settings);
         }
         #endregion
         

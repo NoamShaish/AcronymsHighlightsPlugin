@@ -13,7 +13,7 @@ namespace AHPWordAddIn.common.UserControls
     public partial class MouseHoverTimerConfiguration : UserControl
     {
         /// <summary>
-        /// 
+        /// Construcotr
         /// </summary>
         public MouseHoverTimerConfiguration()
         {
@@ -22,7 +22,7 @@ namespace AHPWordAddIn.common.UserControls
         }
 
         /// <summary>
-        /// 
+        /// Initilizes Components
         /// </summary>
         private void InitComponents()
         {
@@ -30,18 +30,18 @@ namespace AHPWordAddIn.common.UserControls
         }
 
         /// <summary>
-        /// 
+        /// Gets components state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void getComponentsState(Properties.Settings settings)
         {
             settings.MouseHoverTimerWait = Int32.Parse(cmBxMsHvrTimer.SelectedItem.ToString()[0].ToString());
         }
 
         /// <summary>
-        /// 
+        /// Sets components state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void setComponentsState(Properties.Settings settings)
         {
             string wait = settings.MouseHoverTimerWait.ToString();

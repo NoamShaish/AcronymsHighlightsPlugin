@@ -58,14 +58,18 @@ namespace AHPWordAddIn.common.GUIForms
         }
 
         /// <summary>
-        /// 
+        /// Gets components' state
         /// </summary>
-        /// <param name="settings"></param>
+        /// <param name="settings">Application's Settings Object</param>
         internal void getComponentsState(Properties.Settings settings)
         {
             advancedTranslationEvntCfg.getComponentsState(settings);
         }
 
+        /// <summary>
+        /// Sets components' state
+        /// </summary>
+        /// <param name="settings">Application's Settings Object</param>
         internal void setComponentsState(Properties.Settings settings)
         {
             advancedTranslationEvntCfg.setComponentsState(settings);
