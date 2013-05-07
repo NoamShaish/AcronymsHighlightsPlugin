@@ -43,6 +43,7 @@
             this.chkBxTranslateOnMouseHover = this.Factory.CreateRibbonCheckBox();
             this.grpDataSrc = this.Factory.CreateRibbonGroup();
             this.chkBxExternalDataSources = this.Factory.CreateRibbonCheckBox();
+            this.buttonSetLocalDataSource = this.Factory.CreateRibbonButton();
             this.tabAcronymHighlights.SuspendLayout();
             this.grpConfiguration.SuspendLayout();
             this.grpDataSrc.SuspendLayout();
@@ -84,6 +85,7 @@
             // 
             this.grpDataSrc.DialogLauncher = ribbonDialogLauncherImpl2;
             this.grpDataSrc.Items.Add(this.chkBxExternalDataSources);
+            this.grpDataSrc.Items.Add(this.buttonSetLocalDataSource);
             this.grpDataSrc.Label = "Data Source";
             this.grpDataSrc.Name = "grpDataSrc";
             this.grpDataSrc.DialogLauncherClick += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grpDataSrc_DialogLauncherClick);
@@ -92,6 +94,12 @@
             // 
             this.chkBxExternalDataSources.Label = "External Data Sources";
             this.chkBxExternalDataSources.Name = "chkBxExternalDataSources";
+            // 
+            // buttonSetLocalDataSource
+            // 
+            this.buttonSetLocalDataSource.Label = "Set Local Data Source";
+            this.buttonSetLocalDataSource.Name = "buttonSetLocalDataSource";
+            this.buttonSetLocalDataSource.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSetLocalDataSource_Click);
             // 
             // AccronymHighlightsRibbon
             // 
@@ -117,6 +125,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox chkBxMultipleMatches;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpDataSrc;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox chkBxExternalDataSources;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonSetLocalDataSource;
     }
 
     partial class ThisRibbonCollection

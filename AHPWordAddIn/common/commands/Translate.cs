@@ -18,11 +18,15 @@ namespace AHPWordAddIn.common.commands
         #region ICommand
         public void execute()
         {
-            Word.Selection selection = ThisAddIn.application.Selection;
-            if (selection != null && String.IsNullOrEmpty(selection.Text) == false)
+            Word.Selection selection = Globals.ThisAddIn.Application.Selection;
+            if (selection != null && selection.Text != null)
             {
-                IAcronym acronym = AcronymsHighlightFacade.instance.translate(Acronym.newInstance(selection.Text.Trim().TrimEnd(Environment.NewLine.ToCharArray())));
-                AddInManager.instance.notifyTranslation(acronym);
+                string text = selection.Text.Trim().TrimEnd(Environment.NewLine.ToCharArray());
+                if (!String.IsNullOrEmpty(text))
+                {
+                    IAcronym acronym = AcronymsHighlightFacade.instance.translate(Acronym.newInstance(text));
+                    AddInManager.instance.notifyTranslation(acronym);
+                }
             }
         }
         #endregion

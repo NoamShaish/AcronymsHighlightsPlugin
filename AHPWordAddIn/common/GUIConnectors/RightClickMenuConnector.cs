@@ -16,7 +16,7 @@ namespace AHPWordAddIn.common.GUIConnectors
     {
         public RightClickMenuConnector()
         {
-            ThisAddIn.application.WindowBeforeRightClick += new ApplicationEvents4_WindowBeforeRightClickEventHandler(translateSelection);
+            Globals.ThisAddIn.Application.WindowBeforeRightClick += new ApplicationEvents4_WindowBeforeRightClickEventHandler(translateSelection);
             AddInManager.instance.Translated += new EventHandler<WordTranslatedEventArgs>(updateTextPropertiesMenu);
         }
 
@@ -39,7 +39,7 @@ namespace AHPWordAddIn.common.GUIConnectors
         private void updateTextPropertiesMenu(object sender, WordTranslatedEventArgs e)
         {
             CommandBar commandBar = null;
-            getCommandBarInstanceByName(ThisAddIn.application.CommandBars, "Text", out commandBar);
+            getCommandBarInstanceByName(Globals.ThisAddIn.Application.CommandBars, "Text", out commandBar);
             CleanCommandBar(ref commandBar);
             updateCommandBarByAccronym(e.acronym, ref commandBar);
         }
@@ -64,7 +64,7 @@ namespace AHPWordAddIn.common.GUIConnectors
             try
             {
                 commandBar = null;
-                commandBar = ThisAddIn.application.CommandBars[commandBarName];
+                commandBar = Globals.ThisAddIn.Application.CommandBars[commandBarName];
             }
             catch (Exception)
             {

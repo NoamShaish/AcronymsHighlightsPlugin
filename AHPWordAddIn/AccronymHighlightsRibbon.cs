@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using AHPWordAddIn.common.GUIForms;
+using AHPWordAddIn.common.commands;
 
 namespace AHPWordAddIn
 {
@@ -116,5 +117,10 @@ namespace AHPWordAddIn
         }
 
         #endregion
+
+        private void buttonSetLocalDataSource_Click(object sender, RibbonControlEventArgs e)
+        {
+            new AddLocalDataSource().execute();
+        }
     }
 }

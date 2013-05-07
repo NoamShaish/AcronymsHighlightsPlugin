@@ -16,6 +16,7 @@ namespace AHPWordAddIn.common.utils
     {
         private AddInManager() { }
         private static AddInManager internalInstance = new AddInManager();
+        private readonly IDocumentDetails documentDetails = new WordDocumentProperties();
         internal static AddInManager instance
         {
             get
@@ -31,6 +32,7 @@ namespace AHPWordAddIn.common.utils
 
         internal event EventHandler<WordTranslatedEventArgs> Translated;
         internal event EventHandler<LocalDataSourceAddedEventArgs> LocalDataSourceAdded;
+        internal event EventHandler<UpdateDocumentDetailsEventArgs> DocumentDetailsUpdated;
 
         internal void notifyTranslation(IAcronym acronym)
         {
@@ -39,7 +41,11 @@ namespace AHPWordAddIn.common.utils
                 this.Translated(this, new WordTranslatedEventArgs() { acronym = acronym });
             }
         }
-        
+
+        internal void notifyDocumentDetailsUpdate()
+        {
+            this.DocumentDetailsUpdated(this, new UpdateDocumentDetailsEventArgs() { details = this.getDocumentDetails() });
+        }
 
         internal void notifyLocalDataSorceSetup(IDataSource localDataSource)
         {
@@ -49,11 +55,9 @@ namespace AHPWordAddIn.common.utils
             }
         }
 
-        internal static IDocumentDetails getDocumentDetails()
+        internal IDocumentDetails getDocumentDetails()
         {
-            WordDocumentProperties documentProperties = new WordDocumentProperties();
-            documentProperties.set(new WordDocumentProperty() { name = WordDocumentProperties.DataSourceLibPathPropertyName, value = "D:\\Work Station\\lib" });
-            return documentProperties;
+            return this.documentDetails;
         }
     }
 }

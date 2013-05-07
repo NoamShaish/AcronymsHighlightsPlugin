@@ -19,8 +19,6 @@ namespace AHPWordAddIn
     {
         #region Members
         
-        internal static Application application { get; private set; }
-        
         internal static readonly ICollection<IGUIConnector> GUIConnectors = new LinkedList<IGUIConnector>();
  
         private AHPWordAddIn.Properties.Settings settings = new Properties.Settings();
@@ -28,13 +26,7 @@ namespace AHPWordAddIn
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Initializes the basic members of the object
-        /// </summary>
-        private void initializeMembers()
-        {
-            ThisAddIn.application = this.Application;
-        }
+        
         
         /// <summary>
         /// Links all the necessary events to the passed application object
@@ -70,7 +62,6 @@ namespace AHPWordAddIn
         /// <param name="e">Irrelevant</param>
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            initializeMembers();
             initializeConnectors();
             setRibbonComponentsState();
         }

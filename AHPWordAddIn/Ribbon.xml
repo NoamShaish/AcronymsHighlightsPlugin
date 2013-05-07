@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2009/07/customui">
+    <ribbon>
+      <tabs>
+        <tab idMso="TabAddIns" label="Acronyms Highlight">
+          <group id="groupCommands" label="Commands">
+            <button id="buttonAddLocalDataSourceRibon" label="Set Data Source"
+                    screentip="Set Local Data Source" onAction="buttonAddLocalDataSource_Click"
+                    supertip="Set current selection as local data source." size="large" />
+          </group>
+        </tab>
+      </tabs>
+    </ribbon>
+  <contextMenus>
+    <contextMenu idMso="ContextMenuText">
+      <menuSeparator id="AcronymHighlightCommandsSeparator"/>
+      <button id="buttonAddLocalDataSourceContext" label="Set Data Source"
+              screentip="Set Local Data Source" onAction="buttonAddLocalDataSource_Click"
+              supertip="Set current selection as local data source."/>
+      <menuSeparator id="TranslationsSeparator"/>
+      <dynamicMenu id="MyDynamicMenu" label= "My Dynamic Menu" getContent="GetContent" />
+      <!--<dynamicMenu id="TranslationMenu" label="Acronym Translations" 
+                   getContent="GetContent"/>   -->
+    </contextMenu>
+  </contextMenus>
+</customUI>

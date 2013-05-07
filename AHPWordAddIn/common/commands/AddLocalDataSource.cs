@@ -6,6 +6,7 @@ using Word = Microsoft.Office.Interop.Word;
 using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 using AHPWordAddIn.common.plugin;
 using AHPWordAddIn.common.utils;
+using System.Windows.Forms;
 
 namespace AHPWordAddIn.common.commands
 {
@@ -17,10 +18,17 @@ namespace AHPWordAddIn.common.commands
         #region ICommand
         public void execute()
         {
-            Word.Selection selection = ThisAddIn.application.Selection;
-            IDataSource localDataSource = convertToDataSource(selection);
-            AcronymsHighlightFacade.instance.localDataSources = localDataSource;
-            AddInManager.instance.notifyLocalDataSorceSetup(localDataSource);
+            Word.Selection selection = Globals.ThisAddIn.Application.Selection;
+            try
+            {
+                IDataSource localDataSource = convertToDataSource(selection);
+                AcronymsHighlightFacade.instance.localDataSources = localDataSource;
+                AddInManager.instance.notifyLocalDataSorceSetup(localDataSource);
+            }
+            catch (ArgumentException e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         #endregion
 
