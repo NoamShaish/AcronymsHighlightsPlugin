@@ -204,6 +204,7 @@
     <Compile Include="common\commands\ICommand.cs" />
     <Compile Include="common\commands\RegisterDataSources.cs" />
     <Compile Include="common\commands\Translate.cs" />
+    <Compile Include="common\commands\UpdateDocumentDetails.cs" />
     <Compile Include="common\GUIConnectors\IGUIConnector.cs" />
     <Compile Include="common\GUIConnectors\RightClickMenuConnector.cs" />
     <Compile Include="common\GUIForms\AdvancedTranslationConfiguration.cs">
@@ -248,6 +249,7 @@
     </Compile>
     <Compile Include="common\utils\AddInManager.cs" />
     <Compile Include="common\utils\LocalDataSourceAddedEventArgs.cs" />
+    <Compile Include="common\utils\UpdateDocumentDetailsEventArgs.cs" />
     <Compile Include="common\utils\WordTranslatedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

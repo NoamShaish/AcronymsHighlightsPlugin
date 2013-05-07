@@ -42,9 +42,9 @@ namespace AHPWordAddIn.common.utils
             }
         }
 
-        internal void notifyDocumentDetailsUpdate()
+        internal void notifyDocumentDetailsUpdate(IEnumerable<IDocumentProperty> updatedDetails)
         {
-            this.DocumentDetailsUpdated(this, new UpdateDocumentDetailsEventArgs() { details = this.getDocumentDetails() });
+            this.DocumentDetailsUpdated(this, new UpdateDocumentDetailsEventArgs() { updatedDetails = updatedDetails });
         }
 
         internal void notifyLocalDataSorceSetup(IDataSource localDataSource)

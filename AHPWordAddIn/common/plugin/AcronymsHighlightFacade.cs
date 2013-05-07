@@ -25,8 +25,15 @@ namespace AHPWordAddIn.common.plugin
         private AcronymsHighlightFacade() 
         {
             this.plugin = AcronymsHighlightPlugin.newInstance();
-            IDocumentDetails details = AddInManager.getDocumentDetails();
-            this.provider = DDSP.DynamicDataSourceProvider.newInstance(details.get(WordDocumentProperties.DataSourceLibPathPropertyName).value.ToString(), details);
+            IDocumentDetails details = AddInManager.instance.getDocumentDetails();
+            IDocumentProperty pathToDataSource = details.get(WordDocumentProperties.DataSourceLibPathPropertyName);
+
+            if (pathToDataSource != null && !string.IsNullOrWhiteSpace(pathToDataSource.value.ToString()))
+            {
+                this.provider = DDSP.DynamicDataSourceProvider.newInstance(pathToDataSource.value.ToString(), details);
+            }
+            
+            AddInManager.instance.DocumentDetailsUpdated += new EventHandler<UpdateDocumentDetailsEventArgs>(refreshDDSP);
         }
 
         /// <summary>
@@ -44,10 +51,26 @@ namespace AHPWordAddIn.common.plugin
                 {
                     AcronymsHighlightFacade.internalInstance = new AcronymsHighlightFacade();
                 }
+
                 return AcronymsHighlightFacade.internalInstance; 
             }
         }
         #endregion
+
+        private void refreshDDSP(object sender, UpdateDocumentDetailsEventArgs args)
+        {
+            foreach (IDocumentProperty property in args.updatedDetails)
+            {
+                if (property.name.Equals(WordDocumentProperties.DataSourceLibPathPropertyName)){
+                    if (!string.IsNullOrWhiteSpace(property.value.ToString()))
+                    {
+                        this.provider = DDSP.DynamicDataSourceProvider.newInstance(property.value.ToString(), AddInManager.instance.getDocumentDetails());
+                    }
+
+                    break;
+                }
+            }
+        }
 
         #region IAcronymsHighlightPlugin
         public IAcronym translate(IAcronym acronym)
@@ -68,18 +91,18 @@ namespace AHPWordAddIn.common.plugin
 
         #region IDataSourceProvider
         public ICollection<Type> providing()
-        {
-            return this.provider.providing();
+        {   
+            return this.provider == null ? new Type[0] : this.provider.providing();
         }
 
         public ICollection<IDataSource> getAll()
         {
-            return this.provider.getAll();
+            return this.provider == null ? new IDataSource[0] : this.provider.getAll();
         }
 
         public IDataSource get(Type dataSourceType)
         {
-            return this.provider.get(dataSourceType);
+            return this.provider == null ? null : this.provider.get(dataSourceType);
         }
         #endregion
     }

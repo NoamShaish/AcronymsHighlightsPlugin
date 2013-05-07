@@ -37,7 +37,7 @@ namespace DynamicDataSourceProvider.common.factory
         public object create(Type type)
         {
             ICanCreate creator = this.creators[type];
-            return creator.create();
+            return creator == null ? null : creator.create();
         }
 
         public bool tryCreate(Type type, out object obj)

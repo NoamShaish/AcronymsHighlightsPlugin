@@ -8,6 +8,6 @@ namespace AHPWordAddIn.common.utils
 {
     internal class UpdateDocumentDetailsEventArgs : EventArgs
     {
-        internal IDocumentDetails details { get; set; }
+        internal IEnumerable<IDocumentProperty> updatedDetails { get; set; }
     }
 }

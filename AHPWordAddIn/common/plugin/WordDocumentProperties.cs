@@ -22,7 +22,13 @@ namespace AHPWordAddIn.common.plugin
         /// <returns></returns>
         public IDocumentProperty get(String propertyName)
         {
-            return this.properties[propertyName];
+            IDocumentProperty property = null;
+            if (this.properties.Keys.Contains<string>(propertyName))
+            {
+                property = this.properties[propertyName];
+            }
+
+            return property;
         }
         
         /// <summary>

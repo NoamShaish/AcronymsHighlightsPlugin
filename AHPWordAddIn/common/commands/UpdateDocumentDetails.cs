@@ -4,21 +4,31 @@ using System.Linq;
 using System.Text;
 using AHPWordAddIn.common.plugin;
 using AHPWordAddIn.common.utils;
+using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 
 namespace AHPWordAddIn.common.commands
 {
     internal class UpdateDocumentDetails :ICommand
     {
-        private readonly WordDocumentProperty property;
-        public UpdateDocumentDetails(WordDocumentProperty property)
+        private readonly IEnumerable<IDocumentProperty> properties;
+        public UpdateDocumentDetails(IEnumerable<IDocumentProperty> properties)
         {
-            this.property = property;
+            this.properties = properties;
         }
 
         public void execute()
         {
-            AddInManager.instance.getDocumentDetails().set(this.property);
-            AddInManager.instance.notifyDocumentDetailsUpdate();
+            bool updated = false;
+            foreach (IDocumentProperty property in this.properties)
+            {
+                AddInManager.instance.getDocumentDetails().set(property);
+                updated = true;
+            }
+
+            if (updated)
+            {
+                AddInManager.instance.notifyDocumentDetailsUpdate(this.properties);
+            }
         }
     }
 }
