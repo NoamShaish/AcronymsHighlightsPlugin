@@ -9,10 +9,12 @@ namespace AHPWordAddIn.common.plugin
 {
     internal class WordTableDataSource : IDataSource
     {
-        private WordTableDataSource() { }
         private IDocumentDetails documentDetails;
         private Dictionary<string, string> Dictonary { get; set; }
-        
+
+        #region Factory Method Pattern
+        private WordTableDataSource() { }
+
         public static WordTableDataSource newInstance(Table table) {
             if (table.Columns.Count < 2)
             {
@@ -27,7 +29,10 @@ namespace AHPWordAddIn.common.plugin
                 {
                     string acronym = cleanCellText(table.Cell(i, j).Range.Text);
                     string translation = cleanCellText(table.Cell(i, j + 1).Range.Text);
-                    dictionary.Add(acronym, translation);
+                    if (!dictionary.ContainsKey(acronym))
+                    {
+                        dictionary.Add(acronym, translation);
+                    }
                 }
             }
 
@@ -35,7 +40,9 @@ namespace AHPWordAddIn.common.plugin
 
             return dataSource;
         }
+        #endregion
 
+        #region IDataSource
         public string Name { get; private set; }
 
         public IDocumentDetails DocumentDetails
@@ -60,6 +67,7 @@ namespace AHPWordAddIn.common.plugin
         {
             return this.Dictonary.Keys.Contains<string>(acronym.Text);
         }
+        #endregion
 
         private static string cleanCellText(string text)
         {
