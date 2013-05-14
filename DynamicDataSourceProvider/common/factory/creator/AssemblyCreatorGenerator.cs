@@ -9,7 +9,7 @@ namespace DynamicDataSourceProvider.common.factory.creator
 {
     /// <summary>
     /// A creators generator who based on given assembly.
-    /// This implementation basic predcation rules are:
+    /// This implementation basic predication rules are:
     ///     1. Must be a class.
     ///     2. Must be public.
     ///     3. Must not be an interface.

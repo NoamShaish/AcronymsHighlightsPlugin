@@ -52,6 +52,12 @@ namespace AHPWordAddIn
         {
             Globals.Ribbons.AccronymHighlightsRibbon.getComponentsState(settings);
         }
+
+        void saveDocumentDetails(Microsoft.Office.Interop.Word.Document Doc, ref bool Cancel)
+        {
+            AddInManager.instance.saveDocumentDetails();
+        }
+
         #endregion
 
         #region Events
@@ -64,6 +70,7 @@ namespace AHPWordAddIn
         {
             initializeConnectors();
             setRibbonComponentsState();
+            //Globals.ThisAddIn.Application.DocumentBeforeClose += new ApplicationEvents4_DocumentBeforeCloseEventHandler(saveDocumentDetails);
         }
 
         /// <summary>

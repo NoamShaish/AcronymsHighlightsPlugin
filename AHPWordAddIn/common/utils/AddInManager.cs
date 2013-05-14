@@ -14,9 +14,13 @@ namespace AHPWordAddIn.common.utils
     /// </summary>
     internal class AddInManager
     {
-        private AddInManager() { }
+        
         private static AddInManager internalInstance = new AddInManager();
-        private readonly IDocumentDetails documentDetails = new WordDocumentProperties();
+        private readonly IDocumentDetails documentDetails = WordDocumentProperties.load();
+
+        #region Singleton Pattern
+        private AddInManager() { }
+        
         internal static AddInManager instance
         {
             get
@@ -29,7 +33,9 @@ namespace AHPWordAddIn.common.utils
                 return AddInManager.internalInstance;
             }
         }
+        #endregion
 
+        #region Events
         internal event EventHandler<WordTranslatedEventArgs> Translated;
         internal event EventHandler<LocalDataSourceAddedEventArgs> LocalDataSourceAdded;
         internal event EventHandler<UpdateDocumentDetailsEventArgs> DocumentDetailsUpdated;
@@ -54,10 +60,16 @@ namespace AHPWordAddIn.common.utils
                 this.LocalDataSourceAdded(this, new LocalDataSourceAddedEventArgs() { dataSource = localDataSource });
             }
         }
+        #endregion
 
         internal IDocumentDetails getDocumentDetails()
         {
             return this.documentDetails;
+        }
+
+        internal void saveDocumentDetails()
+        {
+            ((WordDocumentProperties)this.documentDetails).save();
         }
     }
 }
