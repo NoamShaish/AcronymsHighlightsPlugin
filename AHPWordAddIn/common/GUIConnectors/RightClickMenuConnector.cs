@@ -14,10 +14,37 @@ namespace AHPWordAddIn.common.GUIConnectors
 {
     internal class RightClickMenuConnector : IGUIConnector
     {
+        #region Members
+
+        bool isMutipleTranslationEnabled    = false;
+        bool isExternalDataSourcesEnabled   = false;
+        bool translateOnRightClick          = false;
+        bool translateOnMaouseHover         = false;
+
+        uint numOfTranslations = 0;
+
+        private AHPWordAddIn.Properties.Settings settings = new Properties.Settings();
+        #endregion
+
         public RightClickMenuConnector()
         {
             Globals.ThisAddIn.Application.WindowBeforeRightClick += new ApplicationEvents4_WindowBeforeRightClickEventHandler(translateSelection);
             AddInManager.instance.Translated += new EventHandler<WordTranslatedEventArgs>(updateTextPropertiesMenu);
+
+            initConfiguration();
+        }
+
+        /// <summary>
+        /// Initializes configuration according to the Settings object
+        /// </summary>
+        private void initConfiguration()
+        {
+            isMutipleTranslationEnabled  = settings.EnableMultipleTranslation;
+            isExternalDataSourcesEnabled = settings.EnableExternalDS;
+            translateOnRightClick        = settings.TranslateOnRightClick;
+            translateOnMaouseHover       = settings.TranslateOnMaouseHover;
+
+            numOfTranslations = (uint)settings.NumOfMultipleTranslations;
         }
 
         /// <summary>
@@ -25,9 +52,13 @@ namespace AHPWordAddIn.common.GUIConnectors
         /// </summary>
         /// <param name="selection">The selected text area of the document</param>
         /// <param name="cancel">Indicates if you want to cancel the right click process</param>
-        private void translateSelection(Selection selection, ref bool cancel)
+        private void translateSelection(    Selection   selection, 
+                                        ref bool        cancel)
         {
-            new Translate().execute();
+            if (translateOnRightClick == true)
+            {
+                new Translate().execute();
+            }
         }
 
         /// <summary>
@@ -80,12 +111,19 @@ namespace AHPWordAddIn.common.GUIConnectors
         private void updateCommandBarByAccronym(IAcronym iAcronym, ref CommandBar commandBar)
         {
             CommandBarButton button = null;
+            uint counter = 0;
             foreach (string translation in iAcronym.Translations)
             {
                 button = commandBar.Controls.Add(MsoControlType.msoControlButton) as CommandBarButton;
                 button.accName = translation;
                 button.Caption = translation;
                 button.Tag = string.Format("tag_{0}", translation);
+                counter++;
+                if (counter                     >= numOfTranslations ||
+                    isMutipleTranslationEnabled == false)
+                {
+                    break;
+                }
             }
         }
     }

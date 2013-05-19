@@ -80,6 +80,7 @@
             // 
             this.chkBxTranslateOnMouseHover.Label = "On Mouse Hover";
             this.chkBxTranslateOnMouseHover.Name = "chkBxTranslateOnMouseHover";
+            this.chkBxTranslateOnMouseHover.Visible = false;
             // 
             // grpDataSrc
             // 
