@@ -8,11 +8,18 @@ namespace MokingDataSource
 {
     public class MokingDataSouce : IDataSource
     {
+        public MokingDataSouce()
+        {
+            Random random = new Random();
+            this.MokingId = random.Next(1, 11);
+        }
 
         public string Name
         {
-            get { return "Moking Data Source"; }
+            get { return "Moking Data Source " + this.MokingId; }
         }
+
+        public int MokingId { get; set; }
 
         public IDocumentDetails DocumentDetails
         {
@@ -31,10 +38,10 @@ namespace MokingDataSource
                 throw new ArgumentNullException("acronym.Translation isnt initilaized");
             }
 
-            acronym.Translations.Add("Translation 1");
-            acronym.Translations.Add("Translation 2");
-            acronym.Translations.Add("Translation 3");
-            acronym.Translations.Add("Translation 4");
+            for (int i = 0; i < this.MokingId; i++)
+            {
+                acronym.Translations.Add("MDS" + this.MokingId + " Translation " + i + " " + acronym.Text);
+            }
 
             return acronym;
         }

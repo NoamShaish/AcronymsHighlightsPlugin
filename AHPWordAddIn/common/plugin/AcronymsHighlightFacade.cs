@@ -61,15 +61,33 @@ namespace AHPWordAddIn.common.plugin
         {
             foreach (IDocumentProperty property in args.updatedDetails)
             {
-                if (property.name.Equals(WordDocumentProperties.DataSourceLibPathPropertyName)){
-                    if (!string.IsNullOrWhiteSpace(property.value.ToString()))
-                    {
-                        this.provider = DDSP.DynamicDataSourceProvider.newInstance(property.value.ToString(), AddInManager.instance.getDocumentDetails());
-                    }
-
+                if (refreshDDSP(property)) {
                     break;
                 }
             }
+        }
+
+        public void refreshDDSP(IEnumerable<IDocumentProperty> properties)
+        {
+            foreach (IDocumentProperty property in properties)
+            {
+                this.refreshDDSP(property);
+            }
+        }
+
+        public bool refreshDDSP(IDocumentProperty property)
+        {
+            bool result = false;
+            if (property.name.Equals(WordDocumentProperties.DataSourceLibPathPropertyName))
+            {
+                if (!string.IsNullOrWhiteSpace(property.value.ToString()))
+                {
+                    this.provider = DDSP.DynamicDataSourceProvider.newInstance(property.value.ToString(), AddInManager.instance.getDocumentDetails());
+                    result = true;
+                }
+            }
+
+            return result;
         }
 
         #region IAcronymsHighlightPlugin
@@ -86,6 +104,11 @@ namespace AHPWordAddIn.common.plugin
         public void registerDataSources(ICollection<AcronymsHighlightsPlugin.Common.Dao.Interfaces.IDataSource> dataSources)
         {
             this.plugin.registerDataSources(dataSources);
+        }
+
+        public void unregisterDataSources()
+        {
+            this.plugin = AcronymsHighlightPlugin.newInstance();
         }
         #endregion
 

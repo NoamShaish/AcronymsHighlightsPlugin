@@ -38,11 +38,10 @@ namespace AHPWordAddIn.common.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DocumentDetailsUpdated(object                          sender, 
-                                            UpdateDocumentDetailsEventArgs  e)
+        private void DocumentDetailsUpdated(object sender, UpdateDocumentDetailsEventArgs  e)
         {
-            //List<IDataSource>list = AcronymsHighlightFacade.instance.getAll() as List<IDataSource>;
-            List<IDataSource> list = null;
+            ICollection<IDataSource> list = AcronymsHighlightFacade.instance.getAll();
+            //List<IDataSource> list = null;
             if (list == null)
             {
                 return;
@@ -56,7 +55,7 @@ namespace AHPWordAddIn.common.UserControls
         /// Fills the data sources checklist box by the given List
         /// </summary>
         /// <param name="list">List of data sources</param>
-        private void fillDataSources(List<IDataSource> list)
+        private void fillDataSources(ICollection<IDataSource> list)
         {
             foreach (IDataSource item in list)
             {
@@ -65,7 +64,8 @@ namespace AHPWordAddIn.common.UserControls
                     continue;
                 }
 
-                chkLstBxURLAddresses.Items.Add(item.Name);
+                this.chkLstBxURLAddresses.DisplayMember = "Name";
+                chkLstBxURLAddresses.Items.Add(item);
             }
         }
 
@@ -103,12 +103,11 @@ namespace AHPWordAddIn.common.UserControls
         /// </summary>
         /// <param name="sender">Irrelevant</param>
         /// <param name="e">Irrelevant</param>
-        private void btnBrowse_Click(   object      sender, 
-                                        EventArgs   e)
+        private void btnBrowse_Click(object sender, EventArgs e)
         {
             string folderPath = "";
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.SelectedPath = "C:\\";
+            folderBrowserDialog.SelectedPath = @"C:\";
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 folderPath = folderBrowserDialog.SelectedPath;
@@ -121,11 +120,10 @@ namespace AHPWordAddIn.common.UserControls
         /// </summary>
         /// <param name="sender">Irrelevant</param>
         /// <param name="e">Irrelevant</param>
-        private void btnFetch_Click(object      sender, 
-                                    EventArgs   e)
+        private void btnFetch_Click(object sender, EventArgs e)
         {
             /* Remove Comment */
-            //updateExternalDSCheckBoxListByPath();
+            updateExternalDSCheckBoxListByPath();
         }
 
         /// <summary>
@@ -142,6 +140,17 @@ namespace AHPWordAddIn.common.UserControls
                 value = valueInTextBox
             });
             new UpdateDocumentDetails(props).execute();
+        }
+
+        internal ICollection<IDataSource> getChoosenDataSources()
+        {
+            ICollection<IDataSource> selected = new List<IDataSource>(this.chkLstBxURLAddresses.CheckedItems.Count);
+            foreach (IDataSource dataSource in this.chkLstBxURLAddresses.CheckedItems)
+            {
+                selected.Add(dataSource);
+            }
+
+            return selected;
         }
     }
 }

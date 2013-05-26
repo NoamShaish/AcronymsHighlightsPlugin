@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using AHPWordAddIn.common.UserControls;
+using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
+using AHPWordAddIn.common.utils;
+using AHPWordAddIn.common.plugin;
 
 namespace AHPWordAddIn.common.GUIForms
 {
@@ -54,9 +57,21 @@ namespace AHPWordAddIn.common.GUIForms
         /// </summary>
         /// <param name="sender">Irrelevant</param>
         /// <param name="e">Irrelevant</param>
-        private void btnClose_Click_1(  object      sender, 
-                                        EventArgs   e)
+        private void btnClose_Click_1(object sender, EventArgs e)
         {
+            ICollection<IDataSource> dataSorcesSelected = this.externalDataSourceMgr.getChoosenDataSources();
+            if (dataSorcesSelected != null)
+            {
+                if (dataSorcesSelected.Count > 0)
+                {
+                    AcronymsHighlightFacade.instance.registerDataSources(dataSorcesSelected);
+                }
+                else
+                {
+                    AcronymsHighlightFacade.instance.unregisterDataSources();
+                }
+            } 
+
             Hide();
         }
 

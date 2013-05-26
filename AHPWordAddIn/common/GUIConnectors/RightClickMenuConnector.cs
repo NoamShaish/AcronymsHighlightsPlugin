@@ -55,10 +55,10 @@ namespace AHPWordAddIn.common.GUIConnectors
         private void translateSelection(    Selection   selection, 
                                         ref bool        cancel)
         {
-            if (translateOnRightClick == true)
-            {
+            //if (translateOnRightClick == true)
+            //{
                 new Translate().execute();
-            }
+            //}
         }
 
         /// <summary>

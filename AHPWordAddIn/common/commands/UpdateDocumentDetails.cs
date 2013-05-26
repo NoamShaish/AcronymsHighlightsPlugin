@@ -27,6 +27,7 @@ namespace AHPWordAddIn.common.commands
 
             if (updated)
             {
+                AcronymsHighlightFacade.instance.refreshDDSP(properties);
                 AddInManager.instance.notifyDocumentDetailsUpdate(this.properties);
             }
         }

@@ -41,11 +41,7 @@ namespace DynamicDataSourceProvider.common.provider
             {
                 throw new ArgumentNullException("factory");
             }
-            if (factory.creating().Count <= 0)
-            {
-                throw new ArgumentException("Factory produce nothing", "factory");
-            }
-
+            
             DataSourceProvider provider = new DataSourceProvider();
             provider.factory = factory;
             provider.documentDetails = documentDetails;

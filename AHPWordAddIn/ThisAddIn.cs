@@ -12,6 +12,7 @@ using Microsoft.Office.Core;
 using AcronymsHighlightsPlugin.Common.Dao.Base;
 using AHPWordAddIn.common.GUIConnectors;
 using System.Configuration;
+using AHPWordAddIn.common.plugin;
 
 namespace AHPWordAddIn
 {

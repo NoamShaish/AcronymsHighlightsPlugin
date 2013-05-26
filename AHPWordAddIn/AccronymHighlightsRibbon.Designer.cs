@@ -75,6 +75,7 @@
             // 
             this.chkBxTranslateOnRightClick.Label = "On Right Click";
             this.chkBxTranslateOnRightClick.Name = "chkBxTranslateOnRightClick";
+            
             // 
             // chkBxMultipleMatches
             // 
