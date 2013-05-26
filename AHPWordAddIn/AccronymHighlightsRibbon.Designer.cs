@@ -44,15 +44,20 @@
             this.grpDataSrc = this.Factory.CreateRibbonGroup();
             this.chkBxExternalDataSources = this.Factory.CreateRibbonCheckBox();
             this.buttonSetLocalDataSource = this.Factory.CreateRibbonButton();
+            this.grpTranslationSection = this.Factory.CreateRibbonGroup();
+            this.lblAcronym = this.Factory.CreateRibbonLabel();
+            this.drpDwnTranslations = this.Factory.CreateRibbonDropDown();
             this.tabAcronymHighlights.SuspendLayout();
             this.grpConfiguration.SuspendLayout();
             this.grpDataSrc.SuspendLayout();
+            this.grpTranslationSection.SuspendLayout();
             // 
             // tabAcronymHighlights
             // 
             this.tabAcronymHighlights.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tabAcronymHighlights.Groups.Add(this.grpConfiguration);
             this.tabAcronymHighlights.Groups.Add(this.grpDataSrc);
+            this.tabAcronymHighlights.Groups.Add(this.grpTranslationSection);
             this.tabAcronymHighlights.Label = "Acronym Highlights";
             this.tabAcronymHighlights.Name = "tabAcronymHighlights";
             // 
@@ -80,6 +85,7 @@
             // 
             this.chkBxTranslateOnMouseHover.Label = "On Mouse Hover";
             this.chkBxTranslateOnMouseHover.Name = "chkBxTranslateOnMouseHover";
+            this.chkBxTranslateOnMouseHover.Visible = false;
             // 
             // grpDataSrc
             // 
@@ -101,6 +107,23 @@
             this.buttonSetLocalDataSource.Name = "buttonSetLocalDataSource";
             this.buttonSetLocalDataSource.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonSetLocalDataSource_Click);
             // 
+            // grpTranslationSection
+            // 
+            this.grpTranslationSection.Items.Add(this.lblAcronym);
+            this.grpTranslationSection.Items.Add(this.drpDwnTranslations);
+            this.grpTranslationSection.Label = "Translation Section";
+            this.grpTranslationSection.Name = "grpTranslationSection";
+            // 
+            // lblAcronym
+            // 
+            this.lblAcronym.Label = "Acronym:";
+            this.lblAcronym.Name = "lblAcronym";
+            // 
+            // drpDwnTranslations
+            // 
+            this.drpDwnTranslations.Label = "Tranalstions:";
+            this.drpDwnTranslations.Name = "drpDwnTranslations";
+            // 
             // AccronymHighlightsRibbon
             // 
             this.Name = "AccronymHighlightsRibbon";
@@ -113,6 +136,8 @@
             this.grpConfiguration.PerformLayout();
             this.grpDataSrc.ResumeLayout(false);
             this.grpDataSrc.PerformLayout();
+            this.grpTranslationSection.ResumeLayout(false);
+            this.grpTranslationSection.PerformLayout();
 
         }
 
@@ -126,6 +151,9 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpDataSrc;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox chkBxExternalDataSources;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonSetLocalDataSource;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpTranslationSection;
+        internal Microsoft.Office.Tools.Ribbon.RibbonLabel lblAcronym;
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown drpDwnTranslations;
     }
 
     partial class ThisRibbonCollection

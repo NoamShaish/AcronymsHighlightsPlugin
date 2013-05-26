@@ -34,14 +34,15 @@
             // 
             // pnlMouseHoverTimer
             // 
-            this.pnlMouseHoverTimer.Location = new System.Drawing.Point(3, 3);
+            this.pnlMouseHoverTimer.Location = new System.Drawing.Point(182, 3);
             this.pnlMouseHoverTimer.Name = "pnlMouseHoverTimer";
             this.pnlMouseHoverTimer.Size = new System.Drawing.Size(132, 117);
             this.pnlMouseHoverTimer.TabIndex = 0;
+            this.pnlMouseHoverTimer.Visible = false;
             // 
             // pnlMultipleMatchesCfg
             // 
-            this.pnlMultipleMatchesCfg.Location = new System.Drawing.Point(141, 3);
+            this.pnlMultipleMatchesCfg.Location = new System.Drawing.Point(3, 3);
             this.pnlMultipleMatchesCfg.Name = "pnlMultipleMatchesCfg";
             this.pnlMultipleMatchesCfg.Size = new System.Drawing.Size(170, 117);
             this.pnlMultipleMatchesCfg.TabIndex = 1;

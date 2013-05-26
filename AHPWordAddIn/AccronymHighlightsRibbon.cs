@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using AHPWordAddIn.common.GUIForms;
 using AHPWordAddIn.common.commands;
+using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 
 namespace AHPWordAddIn
 {
@@ -121,6 +122,23 @@ namespace AHPWordAddIn
         private void buttonSetLocalDataSource_Click(object sender, RibbonControlEventArgs e)
         {
             new AddLocalDataSource().execute();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="iAcronym"></param>
+        internal void setAcronymAndTranslations(IAcronym iAcronym)
+        {
+            lblAcronym.Label = string.Format("Acronym: {0}", iAcronym.Text);
+            drpDwnTranslations.Items.Clear();
+
+            foreach (string translation in iAcronym.Translations)
+            {
+                RibbonDropDownItem item = this.Factory.CreateRibbonDropDownItem();
+                item.Label = translation;
+                drpDwnTranslations.Items.Add(item);
+            }
         }
     }
 }
