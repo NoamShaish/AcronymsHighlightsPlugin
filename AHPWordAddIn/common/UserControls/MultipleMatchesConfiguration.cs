@@ -56,5 +56,14 @@ namespace AHPWordAddIn.common.UserControls
                 }
             }
         }
+
+        /// <summary>
+        /// Returns the allowed amount of translations
+        /// </summary>
+        /// <returns>The allowed amount of translations</returns>
+        internal int getNumberOfTranslations()
+        {
+            return Int32.Parse(cmBxNumResults.SelectedItem.ToString()[0].ToString());
+        }
     }
 }

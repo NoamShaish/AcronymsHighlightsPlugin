@@ -74,5 +74,10 @@ namespace AHPWordAddIn.common.GUIForms
         {
             advancedTranslationEvntCfg.setComponentsState(settings);
         }
+
+        internal int getNumberOfTranslations()
+        {
+            return advancedTranslationEvntCfg.getNumberOfTranslations();
+        }
     }
 }

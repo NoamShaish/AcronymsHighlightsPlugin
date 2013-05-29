@@ -8,6 +8,7 @@ using Microsoft.Office.Core;
 using Microsoft.Office.Tools.Word;
 using AHPWordAddIn.common.utils;
 using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
+using AHPWordAddIn.common.GUIForms;
 
 
 namespace AHPWordAddIn.common.GUIConnectors
@@ -21,7 +22,7 @@ namespace AHPWordAddIn.common.GUIConnectors
         bool translateOnRightClick          = false;
         bool translateOnMaouseHover         = false;
 
-        uint numOfTranslations = 0;
+        int numOfTranslations = 0;
 
         private AHPWordAddIn.Properties.Settings settings = new Properties.Settings();
         #endregion
@@ -44,7 +45,7 @@ namespace AHPWordAddIn.common.GUIConnectors
             translateOnRightClick        = settings.TranslateOnRightClick;
             translateOnMaouseHover       = settings.TranslateOnMaouseHover;
 
-            numOfTranslations = (uint)settings.NumOfMultipleTranslations;
+            numOfTranslations = settings.NumOfMultipleTranslations;
         }
 
         /// <summary>
@@ -55,10 +56,7 @@ namespace AHPWordAddIn.common.GUIConnectors
         private void translateSelection(    Selection   selection, 
                                         ref bool        cancel)
         {
-            //if (translateOnRightClick == true)
-            //{
-                new Translate().execute();
-            //}
+            new Translate().execute();
         }
 
         /// <summary>
@@ -72,8 +70,11 @@ namespace AHPWordAddIn.common.GUIConnectors
             CommandBar commandBar = null;
             getCommandBarInstanceByName(Globals.ThisAddIn.Application.CommandBars, "Text", out commandBar);
             CleanCommandBar(ref commandBar);
-            updateCommandBarByAccronym(e.acronym, ref commandBar);
-            Globals.Ribbons.AccronymHighlightsRibbon.setAcronymAndTranslations(e.acronym);
+            if (Globals.Ribbons.AccronymHighlightsRibbon.chkBxTranslateOnRightClick.Checked == true)
+            {
+                updateCommandBarByAccronym(e.acronym, ref commandBar);
+                Globals.Ribbons.AccronymHighlightsRibbon.setAcronymAndTranslations(e.acronym);
+            }
         }
 
         /// <summary>
@@ -112,6 +113,16 @@ namespace AHPWordAddIn.common.GUIConnectors
         private void updateCommandBarByAccronym(IAcronym iAcronym, ref CommandBar commandBar)
         {
             CommandBarButton button = null;
+            isMutipleTranslationEnabled = Globals.Ribbons.AccronymHighlightsRibbon.chkBxMultipleMatches.Checked;
+            isMutipleTranslationEnabled = Globals.Ribbons.AccronymHighlightsRibbon.chkBxMultipleMatches.Checked;
+            if (isMutipleTranslationEnabled == true)
+            {
+                numOfTranslations = Int32.Parse(Globals.Ribbons.AccronymHighlightsRibbon.drpDwnNumberOfTranslations.SelectedItem.ToString()[0].ToString());
+            }
+            else
+            {
+                numOfTranslations = 1;
+            }
             uint counter = 0;
             foreach (string translation in iAcronym.Translations)
             {

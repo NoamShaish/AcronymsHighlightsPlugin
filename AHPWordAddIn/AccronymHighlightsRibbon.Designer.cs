@@ -34,15 +34,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Office.Tools.Ribbon.RibbonDialogLauncher ribbonDialogLauncherImpl1 = this.Factory.CreateRibbonDialogLauncher();
-            Microsoft.Office.Tools.Ribbon.RibbonDialogLauncher ribbonDialogLauncherImpl2 = this.Factory.CreateRibbonDialogLauncher();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl1 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl2 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl3 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl4 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl5 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl6 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl7 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl8 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl9 = this.Factory.CreateRibbonDropDownItem();
+            Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl10 = this.Factory.CreateRibbonDropDownItem();
             this.tabAcronymHighlights = this.Factory.CreateRibbonTab();
             this.grpConfiguration = this.Factory.CreateRibbonGroup();
             this.chkBxTranslateOnRightClick = this.Factory.CreateRibbonCheckBox();
-            this.chkBxMultipleMatches = this.Factory.CreateRibbonCheckBox();
             this.chkBxTranslateOnMouseHover = this.Factory.CreateRibbonCheckBox();
+            this.chkBxMultipleMatches = this.Factory.CreateRibbonCheckBox();
+            this.drpDwnNumberOfTranslations = this.Factory.CreateRibbonDropDown();
             this.grpDataSrc = this.Factory.CreateRibbonGroup();
             this.chkBxExternalDataSources = this.Factory.CreateRibbonCheckBox();
+            this.btnSetEternalDS = this.Factory.CreateRibbonButton();
             this.buttonSetLocalDataSource = this.Factory.CreateRibbonButton();
             this.grpTranslationSection = this.Factory.CreateRibbonGroup();
             this.lblAcronym = this.Factory.CreateRibbonLabel();
@@ -63,10 +73,10 @@
             // 
             // grpConfiguration
             // 
-            this.grpConfiguration.DialogLauncher = ribbonDialogLauncherImpl1;
             this.grpConfiguration.Items.Add(this.chkBxTranslateOnRightClick);
-            this.grpConfiguration.Items.Add(this.chkBxMultipleMatches);
             this.grpConfiguration.Items.Add(this.chkBxTranslateOnMouseHover);
+            this.grpConfiguration.Items.Add(this.chkBxMultipleMatches);
+            this.grpConfiguration.Items.Add(this.drpDwnNumberOfTranslations);
             this.grpConfiguration.Label = "Translation Configuration";
             this.grpConfiguration.Name = "grpConfiguration";
             this.grpConfiguration.DialogLauncherClick += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grpConfiguration_DialogLauncherClick);
@@ -75,12 +85,6 @@
             // 
             this.chkBxTranslateOnRightClick.Label = "On Right Click";
             this.chkBxTranslateOnRightClick.Name = "chkBxTranslateOnRightClick";
-            
-            // 
-            // chkBxMultipleMatches
-            // 
-            this.chkBxMultipleMatches.Label = "Multiple Matches";
-            this.chkBxMultipleMatches.Name = "chkBxMultipleMatches";
             // 
             // chkBxTranslateOnMouseHover
             // 
@@ -88,19 +92,54 @@
             this.chkBxTranslateOnMouseHover.Name = "chkBxTranslateOnMouseHover";
             this.chkBxTranslateOnMouseHover.Visible = false;
             // 
+            // chkBxMultipleMatches
+            // 
+            this.chkBxMultipleMatches.Label = "Multiple Matches";
+            this.chkBxMultipleMatches.Name = "chkBxMultipleMatches";
+            // 
+            // drpDwnNumberOfTranslations
+            // 
+            ribbonDropDownItemImpl1.Label = "1";
+            ribbonDropDownItemImpl2.Label = "2";
+            ribbonDropDownItemImpl3.Label = "2";
+            ribbonDropDownItemImpl4.Label = "3";
+            ribbonDropDownItemImpl5.Label = "4";
+            ribbonDropDownItemImpl6.Label = "5";
+            ribbonDropDownItemImpl7.Label = "6";
+            ribbonDropDownItemImpl8.Label = "7";
+            ribbonDropDownItemImpl9.Label = "8";
+            ribbonDropDownItemImpl10.Label = "9";
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl1);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl2);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl3);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl4);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl5);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl6);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl7);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl8);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl9);
+            this.drpDwnNumberOfTranslations.Items.Add(ribbonDropDownItemImpl10);
+            this.drpDwnNumberOfTranslations.Label = "Number of Matches:";
+            this.drpDwnNumberOfTranslations.Name = "drpDwnNumberOfTranslations";
+            // 
             // grpDataSrc
             // 
-            this.grpDataSrc.DialogLauncher = ribbonDialogLauncherImpl2;
             this.grpDataSrc.Items.Add(this.chkBxExternalDataSources);
+            this.grpDataSrc.Items.Add(this.btnSetEternalDS);
             this.grpDataSrc.Items.Add(this.buttonSetLocalDataSource);
             this.grpDataSrc.Label = "Data Source";
             this.grpDataSrc.Name = "grpDataSrc";
-            this.grpDataSrc.DialogLauncherClick += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.grpDataSrc_DialogLauncherClick);
             // 
             // chkBxExternalDataSources
             // 
             this.chkBxExternalDataSources.Label = "External Data Sources";
             this.chkBxExternalDataSources.Name = "chkBxExternalDataSources";
+            // 
+            // btnSetEternalDS
+            // 
+            this.btnSetEternalDS.Label = "Set External Data Sources";
+            this.btnSetEternalDS.Name = "btnSetEternalDS";
+            this.btnSetEternalDS.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnSetEternalDS_Click);
             // 
             // buttonSetLocalDataSource
             // 
@@ -155,6 +194,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpTranslationSection;
         internal Microsoft.Office.Tools.Ribbon.RibbonLabel lblAcronym;
         internal Microsoft.Office.Tools.Ribbon.RibbonDropDown drpDwnTranslations;
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown drpDwnNumberOfTranslations;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSetEternalDS;
     }
 
     partial class ThisRibbonCollection

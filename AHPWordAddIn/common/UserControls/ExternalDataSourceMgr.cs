@@ -85,8 +85,10 @@ namespace AHPWordAddIn.common.UserControls
         internal void setComponentsState(Properties.Settings settings)
         {
             txtBxDDSPPath.Text = settings.ExternalDSPath;
-            /* Remove Comment */
-            //updateExternalDSCheckBoxListByPath();
+            if (txtBxDDSPPath.Text != string.Empty)
+            {
+                updateExternalDSCheckBoxListByPath();
+            }
         }
 
         /// <summary>
@@ -122,7 +124,6 @@ namespace AHPWordAddIn.common.UserControls
         /// <param name="e">Irrelevant</param>
         private void btnFetch_Click(object sender, EventArgs e)
         {
-            /* Remove Comment */
             updateExternalDSCheckBoxListByPath();
         }
 

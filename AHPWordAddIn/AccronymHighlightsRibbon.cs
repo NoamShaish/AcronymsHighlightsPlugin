@@ -11,6 +11,10 @@ namespace AHPWordAddIn
 {
     public partial class AccronymHighlightsRibbon
     {
+        #region Members
+        private AHPWordAddIn.Properties.Settings settings = new Properties.Settings();
+        #endregion
+
         #region API
         /// <summary>
         /// Sets components state according to "Settings" object values
@@ -30,6 +34,11 @@ namespace AHPWordAddIn
         {
             getTranslationSettings(settings);
             getExternalDataSourcesSettings(settings);
+        }
+
+        internal int getNumOfTranslations()
+        {
+            return AdvancedTranslationConfiguration.getAdvancedTranslationConfiguration().getNumberOfTranslations();
         }
         #endregion
 
@@ -53,8 +62,8 @@ namespace AHPWordAddIn
             chkBxTranslateOnRightClick.Checked = settings.TranslateOnRightClick;
             chkBxMultipleMatches.Checked = settings.EnableMultipleTranslation;
             chkBxTranslateOnMouseHover.Checked = settings.TranslateOnMaouseHover;
-
-            AdvancedTranslationConfiguration.getAdvancedTranslationConfiguration().setComponentsState(settings);
+            drpDwnNumberOfTranslations.SelectedItemIndex = settings.NumOfMultipleTranslations - 1;
+            //AdvancedTranslationConfiguration.getAdvancedTranslationConfiguration().setComponentsState(settings);
 
         }
 
@@ -78,7 +87,7 @@ namespace AHPWordAddIn
             settings.EnableMultipleTranslation  = chkBxMultipleMatches.Checked;
             settings.TranslateOnMaouseHover     = chkBxTranslateOnMouseHover.Checked;
 
-            AdvancedTranslationConfiguration.getAdvancedTranslationConfiguration().getComponentsState(settings);
+            settings.NumOfMultipleTranslations = Int32.Parse(drpDwnNumberOfTranslations.SelectedItem.ToString()[0].ToString());
         }
 
         #endregion
@@ -106,19 +115,6 @@ namespace AHPWordAddIn
             AdvancedTranslationConfiguration.getAdvancedTranslationConfiguration().Show();
         }
 
-        /// <summary>
-        /// This event occures when you click on the expand group (grpDataSrc) button in the "Ribbon" component
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void grpDataSrc_DialogLauncherClick(object                  sender, 
-                                                    RibbonControlEventArgs  e)
-        {
-            ExternalDataSourceConfiguration.getExternalDataSourceConfiguration().Show();
-        }
-
-        #endregion
-
         private void buttonSetLocalDataSource_Click(object sender, RibbonControlEventArgs e)
         {
             new AddLocalDataSource().execute();
@@ -140,5 +136,17 @@ namespace AHPWordAddIn
                 drpDwnTranslations.Items.Add(item);
             }
         }
+
+        /// <summary>
+        /// This event occures when you click on the expand group (grpDataSrc) button in the "Ribbon" component
+        /// </summary>
+        /// <param name="sender">Irrelevant</param>
+        /// <param name="e">Irrelevant</param>
+        private void btnSetEternalDS_Click( object                  sender, 
+                                            RibbonControlEventArgs  e)
+        {
+            ExternalDataSourceConfiguration.getExternalDataSourceConfiguration().Show();
+        }
+        #endregion
     }
 }

@@ -51,5 +51,10 @@ namespace AHPWordAddIn.common.UserControls
             multipleMatchesConfiguration.setComponentsState(settings);
             mouseHoverTimerConfiguration.setComponentsState(settings);
         }
+
+        internal int getNumberOfTranslations()
+        {
+            return multipleMatchesConfiguration.getNumberOfTranslations();
+        }
     }
 }
