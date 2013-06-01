@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
@@ -10,19 +11,28 @@ namespace AHPWordAddIn.common.plugin
     internal class WordTableDataSource : IDataSource
     {
         private IDocumentDetails documentDetails;
-        private Dictionary<string, string> Dictonary { get; set; }
+        private Dictionary<string, ArrayList> Dictonary { get; set; }
 
         #region Factory Method Pattern
         private WordTableDataSource() { }
 
         public static WordTableDataSource newInstance(Table table) {
+            Dictionary<string, ArrayList> dictionary = convertTable(table);
+
+            WordTableDataSource dataSource = new WordTableDataSource() { Dictonary = dictionary, Name = String.Format("Local Data Source at: {0}", table.Range.ToString()) };
+
+            return dataSource;
+        }
+
+        private static Dictionary<string, ArrayList> convertTable(Table table)
+        {
             if (table.Columns.Count < 2)
             {
                 throw new ArgumentException("Table must contain more then 1 column to be legal data source");
             }
 
             int transalationsCount = table.Columns.Count / 2;
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            Dictionary<string, ArrayList> dictionary = new Dictionary<string, ArrayList>(StringComparer.InvariantCultureIgnoreCase);
             for (int i = 1; i <= table.Rows.Count; ++i)
             {
                 for (int j = 1; j <= transalationsCount; j += 2)
@@ -31,14 +41,15 @@ namespace AHPWordAddIn.common.plugin
                     string translation = cleanCellText(table.Cell(i, j + 1).Range.Text);
                     if (!dictionary.ContainsKey(acronym))
                     {
-                        dictionary.Add(acronym, translation);
+                        dictionary.Add(acronym, new ArrayList(new string[] { translation }));
+                    }
+                    else
+                    {
+                        dictionary[acronym].Add(translation);
                     }
                 }
             }
-
-            WordTableDataSource dataSource = new WordTableDataSource() { Dictonary = dictionary, Name = String.Format("Local Data Source at: {0}", table.Range.ToString()) };
-
-            return dataSource;
+            return dictionary;
         }
         #endregion
 
@@ -57,7 +68,10 @@ namespace AHPWordAddIn.common.plugin
         {
             if (this.Dictonary.Keys.Contains<string>(acronym.Text))
             {
-                acronym.Translations.Add(this.Dictonary[acronym.Text]);
+                foreach (String translation in this.Dictonary[acronym.Text])
+                {
+                    acronym.Translations.Add(translation);
+                }
             }
 
             return acronym;
@@ -71,7 +85,12 @@ namespace AHPWordAddIn.common.plugin
 
         private static string cleanCellText(string text)
         {
-            return text.Replace("\r\a", "");
+            return text.Replace("\r\a", "").Trim();
+        }
+
+        public void extand(Table table)
+        {
+            convertTable(table);
         }
     }
 }

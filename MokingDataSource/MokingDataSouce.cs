@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
+using System.Reflection;
 
 namespace MokingDataSource
 {
@@ -10,7 +11,7 @@ namespace MokingDataSource
     {
         public MokingDataSouce()
         {
-            Random random = new Random();
+            Random random = new Random(Assembly.GetExecutingAssembly().ManifestModule.ModuleVersionId.GetHashCode());
             this.MokingId = random.Next(1, 11);
         }
 

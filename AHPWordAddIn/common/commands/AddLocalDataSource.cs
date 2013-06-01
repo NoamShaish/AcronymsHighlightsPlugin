@@ -7,6 +7,7 @@ using AcronymsHighlightsPlugin.Common.Dao.Interfaces;
 using AHPWordAddIn.common.plugin;
 using AHPWordAddIn.common.utils;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Word;
 
 namespace AHPWordAddIn.common.commands
 {
@@ -21,9 +22,19 @@ namespace AHPWordAddIn.common.commands
             Word.Selection selection = Globals.ThisAddIn.Application.Selection;
             try
             {
-                IDataSource localDataSource = convertToDataSource(selection);
-                AcronymsHighlightFacade.instance.localDataSources = localDataSource;
-                AddInManager.instance.notifyLocalDataSorceSetup(localDataSource);
+                Table table = getTable(selection);
+                if (AcronymsHighlightFacade.instance.localDataSources == null)
+                {
+                    IDataSource localDataSource = WordTableDataSource.newInstance(selection.Tables[1]);
+                    AcronymsHighlightFacade.instance.localDataSources = localDataSource;
+                }
+                else
+                {
+                    ((WordTableDataSource)AcronymsHighlightFacade.instance.localDataSources).extand(table);
+                }
+
+                AddInManager.instance.notifyLocalDataSorceSetup(AcronymsHighlightFacade.instance.localDataSources);
+                MessageBox.Show("Local data source was successfully setup.");
             }
             catch (ArgumentException e)
             {
@@ -32,18 +43,11 @@ namespace AHPWordAddIn.common.commands
         }
         #endregion
 
-        private IDataSource convertToDataSource(Word.Selection selection)
+        private Table getTable(Selection selection)
         {
-            try
+            if (selection != null && selection.Tables != null && selection.Tables[1] != null)
             {
-                if (selection != null && selection.Tables != null && selection.Tables[1] != null)
-                {
-                    return WordTableDataSource.newInstance(selection.Tables[1]);
-                }
-            }
-            catch (Exception e)
-            {
-                string a = e.Message;
+                return selection.Tables[1];
             }
 
             throw new ArgumentException("No table selected");
